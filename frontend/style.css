@@ -1,8 +1,11 @@
-/* Reset y variables */
 :root {
-    --bg-color: #1e1e2f;       /* Fondo principal oscuro (morado/azul oscuro) distinto a cajas */
-    --text-color: #ffffff;     /* Texto blanco por defecto */
-    --accent-color: #ff3366;
+    /* Colors matched exactly to the logo */
+    --bg-color: #0b0e14;
+    --nav-bg: rgba(11, 14, 20, 0.85);
+    --text-primary: #ffffff;
+    --text-secondary: #a0a5b5;
+    --accent: #ff0022;
+    --accent-gradient: linear-gradient(135deg, #ff0022, #a60016);
 }
 
 * {
@@ -14,13 +17,328 @@
 body {
     font-family: 'Outfit', sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-primary);
+    line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
+/* =========================================================================
+   STYLES FROM ANTIGRAVITY (styles.css)
+   ========================================================================= */
+
+/* Header & Transparent Nav */
+header {
+    position: fixed;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Restyled Pill Navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: rgba(11, 14, 20, 0.85);
+    border: 1px solid rgba(255, 0, 34, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 6px 6px 32px;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(255, 0, 34, 0.15);
+}
+
+.nav-links li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: capitalize;
+    padding: 10px 18px;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover:not(.contact-btn),
+.nav-links a.active:not(.contact-btn) {
+    background-color: rgba(255, 0, 34, 0.2);
+    color: var(--accent);
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+/* Contact Button inside Pill */
+.nav-links .contact-btn {
+    background: var(--accent);
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav-links .contact-btn:hover {
+    background: #ffffff;
+    color: var(--accent);
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 0, 34, 0.4);
+}
+
+/* Sections Layout */
+section {
+    min-height: 100vh;
+    padding: 140px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Centered Hero Section */
+.hero,
+.centered-hero {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    text-align: center;
+    min-height: 1000px;
+    overflow: hidden;
+    /* Contains the giant orbit ring horizontally */
+}
+
+.hero-content {
+    z-index: 10;
+    position: relative;
+    pointer-events: none;
+    /* Let clicks pass to background if needed */
+}
+
+.hero-content h1 {
+    font-size: 80px;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.hero-content p {
+    font-size: 22px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.highlight {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Orbiting Background Layout */
+.hero-image-sequence-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    /* Orbital path */
+    animation: rotateCircle 35s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.seq-img {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 16px;
+    /* Square with slight rounding */
+    object-fit: cover;
+    animation: counterRotate 35s linear infinite;
+    box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
+    border: 2px solid rgba(255, 0, 34, 0.5);
+    pointer-events: auto;
+}
+
+/* Placement inside the 900x900 ring. Center is 450. Radius boundary is 340 from edge */
+.seq-img:nth-child(1) {
+    top: 0;
+    left: 340px;
+}
+
+.seq-img:nth-child(2) {
+    top: 340px;
+    right: 0;
+}
+
+.seq-img:nth-child(3) {
+    bottom: 0;
+    left: 340px;
+}
+
+.seq-img:nth-child(4) {
+    top: 340px;
+    left: 0;
+}
+
+@keyframes rotateCircle {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes counterRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Other Sections */
+.section-bloque h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.section-bloque p {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+/* Brands Marquee */
+.brands-marquee {
+    min-height: auto;
+    padding: 80px 0;
+    width: 100%;
+    background: #0b0e14;
+    /* Blend with body */
+    border-top: 1px solid rgba(255, 0, 34, 0.1);
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #0b0e14, transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #0b0e14, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    padding-right: 120px;
+    flex-shrink: 0;
+}
+
+.marquee-group img {
+    max-height: 80px;
+    max-width: 160px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.5);
+    /* Modern silver/gray look */
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.marquee-group img:hover {
+    filter: grayscale(0%) opacity(1);
+    /* Explodes into color on hover */
+    transform: scale(1.1);
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* =========================================================================
+   STYLES FROM FRONTEND (style.css) 
+   ========================================================================= */
+
 /* Tipografía global */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 800;
     line-height: 1.1;
     text-transform: uppercase;
@@ -41,21 +359,7 @@ p {
 
 /* ----- Secciones ----- */
 
-/* Hero */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    text-align: center;
-    z-index: 2;
-}
-
+/* Hero additions */
 .hero-title {
     font-size: clamp(4rem, 15vw, 15rem);
     letter-spacing: -0.04em;
@@ -105,13 +409,20 @@ p {
 }
 
 @keyframes scroll {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    100% { transform: translate(-50%, 15px); opacity: 0; }
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+    }
 }
 
 .features {
     padding: 15vh 0;
-    background-color: var(--bg-color); /* Mantenemos el fondo general distinto al negro puro */
+    background-color: var(--bg-color);
     position: relative;
     z-index: 2;
 }
@@ -132,8 +443,8 @@ p {
     padding: 3rem 2rem;
     border-radius: 24px;
     transition: transform 0.3s ease, filter 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .feature-card:hover {
@@ -156,7 +467,8 @@ p {
 
 .horizontal-container {
     display: flex;
-    width: 300vw; /* 3 x 100vw panels */
+    width: 300vw;
+    /* 3 x 100vw panels */
     height: 100%;
 }
 

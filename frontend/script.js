@@ -61,20 +61,22 @@ gsap.from(".feature-card", {
 // --- C) Pinning Horizontal Scroll ---
 // Este es un efecto premium: La pantalla se pinea y en lugar de bajar, se mueve a los lados.
 const horizontalContainer = document.querySelector(".horizontal-container");
-const panels = gsap.utils.toArray(".panel");
+if (horizontalContainer) {
+    const panels = gsap.utils.toArray(".panel");
 
-gsap.to(panels, {
-    xPercent: -100 * (panels.length - 1), // Movemos en el X según cuantos paneles hay (-200% para 3 paneles)
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".horizontal-scroll",
-        pin: true, // ¡Clave! 'Pinea' la sección a la pantalla hasta que acabe
-        start: "top top",
-        end: () => "+=" + horizontalContainer.offsetWidth, // Le da una distancia equivalente al ancho para escrollear
-        scrub: 1, // Hace que actúe fluidamente atado al ratón
-        invalidateOnRefresh: true // Recalcula si el usuario redimensiona la ventana
-    }
-});
+    gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".horizontal-scroll",
+            pin: true, // ¡Clave! 'Pinea' la sección a la pantalla hasta que acabe
+            start: "top top",
+            end: () => "+=" + horizontalContainer.offsetWidth, // Le da una distancia equivalente al ancho para escrollear
+            scrub: 1, // Hace que actúe fluidamente atado al ratón
+            invalidateOnRefresh: true // Recalcula si el usuario redimensiona la ventana
+        }
+    });
+}
 
 // --- D) Texto Extra Grande Parallax (Deep Dive) ---
 // El texto enorme detrás hace zoom hacia nosotros al mover la rueda.
@@ -88,6 +90,23 @@ gsap.fromTo(".huge-text",
             start: "top bottom",
             end: "bottom top",
             scrub: 1
+        }
+    }
+);
+
+// --- E) Animación Sobre Mí (Enlarging Title) ---
+// Al bajar de Home a Sobre Mí, el título "Sobre mí" se agranda fluidamente
+gsap.fromTo("#about .about-title",
+    { scale: 0.8, opacity: 0, y: 50 },
+    {
+        scale: 1.3,
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+            trigger: "#about",
+            start: "top 80%", // Inicia la animación cuando la parte superior de la sección está al 80% de la ventana
+            end: "top 30%",   // Termina cuando llega al 30%
+            scrub: 1          // Animación atada al scroll
         }
     }
 );
