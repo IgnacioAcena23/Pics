@@ -24,7 +24,7 @@ body {
 }
 
 /* =========================================================================
-   STYLES FROM ANTIGRAVITY (styles.css)
+   STYLES FROM ANTIGRAVITY (styles.css) - Including New Carousel & Footer
    ========================================================================= */
 
 /* Header & Transparent Nav */
@@ -127,8 +127,7 @@ section {
 }
 
 /* Centered Hero Section */
-.hero,
-.centered-hero {
+.hero, .centered-hero {
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -136,15 +135,13 @@ section {
     padding-top: 100px;
     text-align: center;
     min-height: 1000px;
-    overflow: hidden;
-    /* Contains the giant orbit ring horizontally */
+    overflow: hidden; /* Contains the giant orbit ring horizontally */
 }
 
 .hero-content {
     z-index: 10;
     position: relative;
-    pointer-events: none;
-    /* Let clicks pass to background if needed */
+    pointer-events: none; /* Let clicks pass to background if needed */
 }
 
 .hero-content h1 {
@@ -178,8 +175,7 @@ section {
     transform: translate(-50%, -50%);
     width: 900px;
     height: 900px;
-    border-radius: 50%;
-    /* Orbital path */
+    border-radius: 50%; /* Orbital path */
     animation: rotateCircle 35s linear infinite;
     z-index: 1;
     pointer-events: none;
@@ -189,8 +185,7 @@ section {
     position: absolute;
     width: 220px;
     height: 220px;
-    border-radius: 16px;
-    /* Square with slight rounding */
+    border-radius: 16px; /* Square with slight rounding */
     object-fit: cover;
     animation: counterRotate 35s linear infinite;
     box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
@@ -199,44 +194,19 @@ section {
 }
 
 /* Placement inside the 900x900 ring. Center is 450. Radius boundary is 340 from edge */
-.seq-img:nth-child(1) {
-    top: 0;
-    left: 340px;
-}
-
-.seq-img:nth-child(2) {
-    top: 340px;
-    right: 0;
-}
-
-.seq-img:nth-child(3) {
-    bottom: 0;
-    left: 340px;
-}
-
-.seq-img:nth-child(4) {
-    top: 340px;
-    left: 0;
-}
+.seq-img:nth-child(1) { top: 0; left: 340px; }
+.seq-img:nth-child(2) { top: 340px; right: 0; }
+.seq-img:nth-child(3) { bottom: 0; left: 340px; }
+.seq-img:nth-child(4) { top: 340px; left: 0; }
 
 @keyframes rotateCircle {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 @keyframes counterRotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(-360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
 }
 
 /* Other Sections */
@@ -250,13 +220,143 @@ section {
     color: var(--text-secondary);
 }
 
+/* Works Section Carousel */
+.works-section {
+    padding: 140px 0 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    width: 100%;
+}
+
+.works-header h2 {
+    font-size: 56px;
+    font-weight: 800;
+}
+
+.scroll-indicator {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.works-carousel {
+    display: flex;
+    gap: 40px; /* Slightly more gap for breathing room */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 40px 100px 40px;
+    cursor: grab;
+    
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.works-carousel.active {
+    cursor: grabbing;
+    scroll-snap-type: none; /* Smooths dragging with mouse */
+}
+
+.works-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.work-card {
+    flex: 0 0 auto;
+    width: 400px;
+    aspect-ratio: 1080 / 1350; /* Mathematical exact ratio 4:5 scaling directly up to high res */
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    scroll-snap-align: center; /* Snaps gracefully to screen center */
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background: #111;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.work-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(11, 14, 20, 0.95) 0%, rgba(11, 14, 20, 0.2) 60%, transparent 100%);
+    z-index: 1;
+}
+
+.work-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 30px;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.work-info h3 {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.work-info p {
+    color: var(--accent);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.work-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(255, 0, 34, 0.25);
+}
+
+.work-card:hover img {
+    transform: scale(1.08); /* Zoom on hover */
+}
+
+.work-card:hover .work-info {
+    transform: translateY(-8px); /* Text floats up */
+}
+
 /* Brands Marquee */
 .brands-marquee {
     min-height: auto;
-    padding: 80px 0;
+    padding: 60px 0;
     width: 100%;
-    background: #0b0e14;
-    /* Blend with body */
+    background: #0b0e14; /* Blend with body */
     border-top: 1px solid rgba(255, 0, 34, 0.1);
 }
 
@@ -264,6 +364,7 @@ section {
     width: 100%;
     overflow: hidden;
     position: relative;
+    padding: 20px 0; /* Prevents logos from getting cut off when scaling */
 }
 
 .marquee-container::before,
@@ -293,10 +394,6 @@ section {
     animation: marqueeScroll 25s linear infinite;
 }
 
-.marquee-track:hover {
-    animation-play-state: paused;
-}
-
 .marquee-group {
     display: flex;
     align-items: center;
@@ -309,30 +406,108 @@ section {
     max-height: 80px;
     max-width: 160px;
     object-fit: contain;
-    filter: grayscale(100%) opacity(0.5);
-    /* Modern silver/gray look */
     transition: all 0.4s ease;
-    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
 }
 
 .marquee-group img:hover {
-    filter: grayscale(0%) opacity(1);
-    /* Explodes into color on hover */
     transform: scale(1.1);
 }
 
 @keyframes marqueeScroll {
-    0% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
 
-    100% {
-        transform: translateX(0);
-    }
+/* Footer & Social Links */
+.site-footer {
+    width: 100%;
+    background-color: #030408; /* Extremadamente oscuro para cerrar la pagina con anclaje visual */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px 40px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.location-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: default;
+}
+
+.location-badge svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+.location-badge:hover {
+    color: #ffffff;
+}
+
+.footer-content p {
+    flex: 1;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.social-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a svg {
+    width: 22px;
+    height: 22px;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 0, 34, 0.4);
 }
 
 /* =========================================================================
-   STYLES FROM FRONTEND (style.css) 
+   STYLES FROM FRONTEND (style.css Extras) 
    ========================================================================= */
 
 /* Tipografía global */
@@ -357,9 +532,8 @@ p {
     padding: 0 5vw;
 }
 
-/* ----- Secciones ----- */
+/* ----- Secciones Extras (Frontend) ----- */
 
-/* Hero additions */
 .hero-title {
     font-size: clamp(4rem, 15vw, 15rem);
     letter-spacing: -0.04em;
@@ -376,7 +550,7 @@ p {
     letter-spacing: 0.2em;
 }
 
-.scroll-indicator {
+.scroll-indicator-frontend {
     position: absolute;
     bottom: 40px;
     left: 50%;
@@ -409,15 +583,8 @@ p {
 }
 
 @keyframes scroll {
-    0% {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(-50%, 15px);
-        opacity: 0;
-    }
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 15px); opacity: 0; }
 }
 
 .features {
@@ -468,7 +635,6 @@ p {
 .horizontal-container {
     display: flex;
     width: 300vw;
-    /* 3 x 100vw panels */
     height: 100%;
 }
 
@@ -506,20 +672,19 @@ p {
     transform: translate(-50%, -50%);
 }
 
-/* Footer Reveal Effect */
-.footer {
+/* Frontend Footer Reveal Effect */
+.footer-frontend {
     height: 80vh;
     background: #050505;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Para dar el efecto de que la pagina pasa por encima y lo revela */
     position: relative;
     z-index: 0;
 }
 
-.footer-content h2 {
+.footer-content-frontend h2 {
     font-size: clamp(3rem, 10vw, 8rem);
     margin-bottom: 1rem;
     background: linear-gradient(to right, #ffffff, #666666);

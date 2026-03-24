@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
     <header>
         <nav>
             <a href="#home" class="logo">
@@ -72,9 +71,60 @@
             </div>
         </section>
 
-        <section id="works" class="section-bloque">
-            <h2>Mis Trabajos</h2>
-            <p>Galería o proyectos de Works...</p>
+        <section id="works" class="works-section">
+            <div class="works-header">
+                <h2>Mis Trabajos</h2>
+                <div class="scroll-indicator">
+                    <span style="color: var(--accent);">&#8592;</span> Desliza <span>&#8594;</span>
+                </div>
+            </div>
+
+            <div class="works-carousel">
+                <!-- Proyecto 1 -->
+                <a href="proyecto1.html" class="work-card">
+                    <img src="examplePics/_DSC7547.jpg" alt="DJ Set Live">
+                    <div class="work-info">
+                        <h3>Festival de Verano</h3>
+                        <p>Live Set</p>
+                    </div>
+                </a>
+
+                <!-- Proyecto 2 -->
+                <a href="proyecto2.html" class="work-card">
+                    <img src="examplePics/_DSC7550.jpg" alt="Producción">
+                    <div class="work-info">
+                        <h3>Noches de Neón</h3>
+                        <p>Producción / Mix</p>
+                    </div>
+                </a>
+
+                <!-- Proyecto 3 -->
+                <a href="proyecto3.html" class="work-card">
+                    <img src="examplePics/_DSC7553.jpg" alt="Gira Nacional">
+                    <div class="work-info">
+                        <h3>Sunset Beach Tour</h3>
+                        <p>Gira Nacional 2024</p>
+                    </div>
+                </a>
+
+                <!-- Proyecto 4 -->
+                <a href="proyecto4.html" class="work-card">
+                    <img src="examplePics/_DSC7559.jpg" alt="Remix Oficial">
+                    <div class="work-info">
+                        <h3>Oasis (Remix)</h3>
+                        <p>Remix Oficial</p>
+                    </div>
+                </a>
+
+                <!-- Proyecto 5 -->
+                <a href="proyecto5.html" class="work-card">
+                    <img src="examplePics/_DSC7607.jpg" alt="Lanzamiento">
+                    <div class="work-info">
+                        <h3>Midnight EP</h3>
+                        <p>Lanzamiento</p>
+                    </div>
+                </a>
+            </div>
         </section>
 
         <section id="contact" class="section-bloque">
@@ -108,17 +158,111 @@
                 </div>
             </div>
         </section>
+    </main>
 
-
-
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>FIN</h2>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="examplePics/1Recurso.png" alt="Villegas Logo"
+                    style="height: 32px; object-fit: contain; filter: grayscale(100%) opacity(0.6);">
+                <div class="location-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <span>Venezuela</span>
+                </div>
             </div>
-        </footer>
+            <p>&copy; 2023 Villegas. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                    </svg>
+                </a>
+                <!-- YouTube -->
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                        </path>
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-        <script src="script.js"></script>
+    <!-- Script interactivo para habilitar el agarre (drag) con el mouse en el carrusel -->
+    <script>
+        const slider = document.querySelector('.works-carousel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let isDragging = false;
+
+        if (slider) {
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Multiplicador de velocidad de deslice
+
+                if (Math.abs(walk) > 5) {
+                    isDragging = true;
+                }
+
+                slider.scrollLeft = scrollLeft - walk;
+            });
+
+            // Evitar que el clic abra la página si el usuario simplemente estaba arrastrando la galería
+            const cards = document.querySelectorAll('.work-card');
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
 </body>
