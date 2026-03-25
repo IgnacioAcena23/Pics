@@ -263,14 +263,54 @@ section {
 }
 
 /* Placement inside the 900x900 ring. Center is 450. Radius boundary is 360. */
-.seq-img:nth-child(1) { top: 0px; left: 360px; }       /* 270° Top */
-.seq-img:nth-child(2) { top: 105.5px; left: 614.5px; } /* 315° Top Right */
-.seq-img:nth-child(3) { top: 360px; left: 720px; }     /* 0° Right */
-.seq-img:nth-child(4) { top: 614.5px; left: 614.5px; } /* 45° Bottom Right */
-.seq-img:nth-child(5) { top: 720px; left: 360px; }     /* 90° Bottom */
-.seq-img:nth-child(6) { top: 614.5px; left: 105.5px; } /* 135° Bottom Left */
-.seq-img:nth-child(7) { top: 360px; left: 0px; }       /* 180° Left */
-.seq-img:nth-child(8) { top: 105.5px; left: 105.5px; } /* 225° Top Left */
+.seq-img:nth-child(1) {
+    top: 0px;
+    left: 360px;
+}
+
+/* 270° Top */
+.seq-img:nth-child(2) {
+    top: 105.5px;
+    left: 614.5px;
+}
+
+/* 315° Top Right */
+.seq-img:nth-child(3) {
+    top: 360px;
+    left: 720px;
+}
+
+/* 0° Right */
+.seq-img:nth-child(4) {
+    top: 614.5px;
+    left: 614.5px;
+}
+
+/* 45° Bottom Right */
+.seq-img:nth-child(5) {
+    top: 720px;
+    left: 360px;
+}
+
+/* 90° Bottom */
+.seq-img:nth-child(6) {
+    top: 614.5px;
+    left: 105.5px;
+}
+
+/* 135° Bottom Left */
+.seq-img:nth-child(7) {
+    top: 360px;
+    left: 0px;
+}
+
+/* 180° Left */
+.seq-img:nth-child(8) {
+    top: 105.5px;
+    left: 105.5px;
+}
+
+/* 225° Top Left */
 
 @keyframes rotateCircle {
     0% {
@@ -387,12 +427,15 @@ section {
         text-align: center;
         gap: 40px;
     }
+
     .about-name {
         font-size: 50px;
     }
+
     .about-role {
         font-size: 35px;
     }
+
     .about-image-col img {
         aspect-ratio: 16/9;
     }
