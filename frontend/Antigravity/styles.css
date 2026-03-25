@@ -310,6 +310,94 @@ section {
     color: var(--text-secondary);
 }
 
+/* About Split Layout (Jamie Alexander style) */
+.about-split-section {
+    min-height: 100vh;
+    padding: 140px 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-split-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+}
+
+.about-image-col {
+    flex: 0 0 40%;
+    max-width: 500px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.about-image-col img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.about-text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-name {
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    letter-spacing: -1px;
+}
+
+.about-role {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.about-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+@media (max-width: 992px) {
+    .about-split-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .about-name {
+        font-size: 50px;
+    }
+    .about-role {
+        font-size: 35px;
+    }
+    .about-image-col img {
+        aspect-ratio: 16/9;
+    }
+}
+
 /* Works Section Carousel */
 .works-section {
     padding: 140px 0 60px;
