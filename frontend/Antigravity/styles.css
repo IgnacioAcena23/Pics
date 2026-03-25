@@ -92,21 +92,11 @@ nav {
 }
 
 /* Contact Button inside Pill */
-.nav-links .contact-btn {
-    background: var(--accent);
-    color: #ffffff;
-    padding: 12px 28px;
-    border-radius: 40px;
-    font-weight: 700;
-    font-size: 15px;
-    transition: all 0.3s ease;
-}
-
 .nav-links .contact-btn:hover,
 .nav-links .contact-btn.active {
-    background: #ffffff;
-    color: var(--accent);
-    transform: scale(1.02);
+    background: var(--accent);
+    color: #ffffff;
+    transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(255, 0, 34, 0.4);
 }
 
