@@ -419,6 +419,7 @@ section {
     max-width: 550px;
     margin: 0 auto;
     font-weight: 300;
+    text-align: justify;
 }
 
 @media (max-width: 992px) {
