@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villegas - Versión Consolidada y Responsiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Integrado desde style.css con mejoras de Responsividad */
+        :root {
+            --bg-color: #0b0e14;
+            --nav-bg: rgba(11, 14, 20, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a5b5;
+            --accent: #ff0022;
+            --accent-gradient: linear-gradient(135deg, #ff0022, #a60016);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Lenis base styles */
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            background: rgba(11, 14, 20, 0.85);
+            border: 1px solid rgba(255, 0, 34, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 6px 6px 6px 32px;
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(255, 0, 34, 0.15);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: capitalize;
+            padding: 10px 18px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: rgba(255, 0, 34, 0.2);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .contact-btn {
+            background: var(--accent);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 140px 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero,
+        .centered-hero {
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px;
+            text-align: center;
+            min-height: 1000px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 10;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: 80px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+            transition: font-size 0.3s;
+        }
+
+        .highlight {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .hero-image-sequence-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            border-radius: 50%;
+            animation: rotateCircle 35s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .seq-img {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 16px;
+            object-fit: cover;
+            animation: counterRotate 35s linear infinite;
+            box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
+            border: 2px solid rgba(255, 0, 34, 0.5);
+            pointer-events: auto;
+        }
+
+        .seq-img:nth-child(1) {
+            top: 0;
+            left: 340px;
+        }
+
+        .seq-img:nth-child(2) {
+            top: 340px;
+            right: 0;
+        }
+
+        .seq-img:nth-child(3) {
+            bottom: 0;
+            left: 340px;
+        }
+
+        .seq-img:nth-child(4) {
+            top: 340px;
+            left: 0;
+        }
+
+        @keyframes rotateCircle {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes counterRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .works-section {
+            padding: 140px 0 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 40px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .works-carousel {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            padding: 20px 40px 100px;
+            cursor: grab;
+            scrollbar-width: none;
+        }
+
+        .works-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .work-card {
+            flex: 0 0 auto;
+            width: 400px;
+            aspect-ratio: 1080 / 1350;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease;
+            background: #111;
+            position: relative;
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .about-title,
+        .works-title,
+        .contact-title {
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-transform: uppercase;
+            transform-origin: left center;
+        }
+
+        .site-footer {
+            background-color: #030408;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+            transition: align-items 0.3s;
+        }
+
+        .email-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 17px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .email-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .email-link:active {
+            transform: scale(0.96);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+            box-shadow: 0 10px 25px rgba(204, 35, 102, 0.4) !important;
+        }
+
+        .social-tiktok:hover {
+            background: linear-gradient(45deg, #00f2ea, #ff0050) !important;
+            box-shadow: 0 10px 25px rgba(255, 0, 80, 0.4) !important;
+        }
+
+        .social-youtube:hover {
+            background: #ff0000 !important;
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4) !important;
+        }
+
+        /* Media Queries responsividad */
+        @media (max-width: 768px) {
+            header {
+                top: 10px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                padding: 6px 12px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 20px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 45px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-logo {
+                align-items: center;
+            }
+
+            .footer-right-column {
+                align-items: center;
+                width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .email-link {
+                font-size: 15px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 35px;
+            }
+
+            .nav-links {
+                gap: 2px;
+            }
+
+            .nav-links a {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#home" class="logo"><img src="examplePics/1Recurso.png" alt="Logo"></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero centered-hero">
+            <div class="hero-image-sequence-bg">
+                <img src="examplePics/_DSC7547.jpg" alt="1" class="seq-img">
+                <img src="examplePics/_DSC7550.jpg" alt="2" class="seq-img">
+                <img src="examplePics/_DSC7553.jpg" alt="3" class="seq-img">
+                <img src="examplePics/_DSC7559.jpg" alt="4" class="seq-img">
+            </div>
+            <div class="hero-content">
+                <h1>Bienvenido a <br><span class="highlight">Mi Visión</span></h1>
+                <p>Diseño web moderno e inmersivo. Siente la energía y el movimiento.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2 class="about-title" style="font-size: clamp(2.8rem, 7.5vw, 5.8rem); margin-bottom: 10px;">¿Quién soy?
+                    </h2>
+                    <p class="hero-subtitle">Desplázate hacia abajo</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="works-section">
+            <div class="works-header">
+                <h2 class="works-title" style="font-size: clamp(2.3rem, 5.5vw, 4.2rem);">Mis Trabajos</h2>
+                <div class="scroll-indicator"
+                    style="color: var(--text-secondary); text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">
+                    <span style="color: var(--accent);">&#8592;</span> Desliza <span>&#8594;</span>
+                </div>
+            </div>
+            <div class="works-carousel">
+                <a href="#" class="work-card"><img src="examplePics/_DSC7547.jpg" alt="W1">
+                    <div class="work-info">
+                        <h3>Festival</h3>
+                        <p>Live Set</p>
+                    </div>
+                </a>
+                <a href="#" class="work-card"><img src="examplePics/_DSC7550.jpg" alt="W2">
+                    <div class="work-info">
+                        <h3>Neón</h3>
+                        <p>Producción</p>
+                    </div>
+                </a>
+                <a href="#" class="work-card"><img src="examplePics/_DSC7553.jpg" alt="W3">
+                    <div class="work-info">
+                        <h3>Sunset</h3>
+                        <p>Tour</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="section-bloque" style="text-align: center;">
+            <h2 class="contact-title" style="font-size: clamp(2.3rem, 5.5vw, 4.2rem); margin-bottom: 20px;">Contacto</h2>
+            <p style="color: var(--text-secondary); font-size: 18px;">¿Listo para trabajar juntos?</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="examplePics/1Recurso.png" alt="Logo"
+                    style="height: 32px; filter: grayscale(100%) opacity(0.6);">
+                <div class="location-badge" style="color: var(--text-secondary); font-size: 14px;"> Venezuela </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 14px;">&copy; 2023 Villegas</p>
+            <div class="footer-right-column">
+                <a href="mailto:hola@gmail.com" class="email-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>hola@gmail.com</span>
+                </a>
+                <div class="social-links">
+                    <a href="#" class="social-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="width:20px;">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg></a>
+                    <a href="#" class="social-tiktok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="width:20px;">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg></a>
+                    <a href="#" class="social-youtube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="width:20px;">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                            </path>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // --- Navegación Activa Inteligente ---
+        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const logoLink = document.querySelector('a.logo[href^="#"]');
+
+        function updateActiveLink(targetId) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === targetId);
+            });
+        }
+
+        [...navLinks, logoLink].forEach(anchor => {
+            if (!anchor) return;
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                updateActiveLink(targetId);
+                gsap.to(window, { duration: 1.5, scrollTo: { y: targetId, autoKill: false }, ease: "power3.inOut" });
+            });
+        });
+
+        // Resaltado al Scroll
+        navLinks.forEach(link => {
+            const targetId = link.getAttribute('href');
+            const section = document.querySelector(targetId);
+            if (section) {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top 20%",
+                    end: "bottom 20%",
+                    onEnter: () => updateActiveLink(targetId),
+                    onEnterBack: () => updateActiveLink(targetId)
+                });
+            }
+        });
+
+        // Animaciones
+        gsap.to(".hero-title", { scale: 0.5, opacity: 0, y: -100, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 } });
+        const sectionTitles = [
+            { selector: "#about .about-title", trigger: "#about" },
+            { selector: "#works .works-title", trigger: "#works" },
+            { selector: "#contact .contact-title", trigger: "#contact" }
+        ];
+        sectionTitles.forEach(st => {
+            gsap.fromTo(st.selector, { scale: 0.8, opacity: 0, y: 50 }, { scale: 1.0, opacity: 1, y: 0, scrollTrigger: { trigger: st.trigger, start: "top 80%", end: "top 30%", scrub: 1 } });
+        });
+
+        // Carrusel
+        const slider = document.querySelector('.works-carousel');
+        let isDown = false, startX, scrollLeft;
+        if (slider) {
+            slider.addEventListener('mousedown', (e) => { isDown = true; slider.classList.add('active'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
+            slider.addEventListener('mouseleave', () => { isDown = false; });
+            slider.addEventListener('mouseup', () => { isDown = false; });
+            slider.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; slider.scrollLeft = scrollLeft - (x - startX) * 2; });
+        }
+    </script>
+</body>
+
+</html>
