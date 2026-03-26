@@ -19,6 +19,12 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     line-height: 1.6;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff0022'/%3E%3Cstop offset='1' stop-color='%23220007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='%23000000' d='M4 2 L4 24 L9 19 L13 28 L17 26 L13 17 L20 17 Z'/%3E%3Cpath fill='url(%23a)' d='M6 5 L6 22 L10 18 L14 26 L16 25 L12 17 L18 17 Z' opacity='0.85'/%3E%3C/svg%3E") 4 2, auto;
+}
+
+/* Custom Pointer Cursor for interactive elements */
+a, button, .logo, .works-carousel, .work-card {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff0022'/%3E%3Cstop offset='1' stop-color='%23220007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='12' y='2' width='4' height='10' fill='%23000000' rx='1'/%3E%3Crect x='17' y='5' width='4' height='8' fill='%23000000' rx='1'/%3E%3Crect x='7' y='5' width='4' height='9' fill='%23000000' rx='1'/%3E%3Crect x='22' y='7' width='4' height='7' fill='%23000000' rx='1'/%3E%3Crect x='7' y='13' width='19' height='12' fill='%23000000' rx='2'/%3E%3Crect x='13' y='3' width='2' height='9' fill='url(%23b)'/%3E%3Crect x='18' y='6' width='2' height='6' fill='url(%23b)'/%3E%3Crect x='8' y='6' width='2' height='7' fill='url(%23b)'/%3E%3Crect x='23' y='8' width='2' height='5' fill='url(%23b)'/%3E%3Crect x='8' y='14' width='17' height='10' fill='url(%23b)' rx='1' opacity='0.85'/%3E%3C/svg%3E") 12 2, pointer !important;
 }
 
 /* Header & Transparent Nav */
@@ -250,63 +256,70 @@ section {
     pointer-events: none;
 }
 
-.seq-img {
+.seq-img-wrapper {
     position: absolute;
     width: 180px;
     height: 180px;
     border-radius: 20px;
+    animation: counterRotate 35s linear infinite;
+    pointer-events: none;
+}
+
+.seq-img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
     /* Square with slight rounding */
     object-fit: cover;
-    animation: counterRotate 35s linear infinite;
     box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
     border: 2px solid transparent;
     pointer-events: auto;
 }
 
 /* Placement inside the 900x900 ring. Center is 450. Radius boundary is 360. */
-.seq-img:nth-child(1) {
+.seq-img-wrapper:nth-child(1) {
     top: 0px;
     left: 360px;
 }
 
 /* 270° Top */
-.seq-img:nth-child(2) {
+.seq-img-wrapper:nth-child(2) {
     top: 105.5px;
     left: 614.5px;
 }
 
 /* 315° Top Right */
-.seq-img:nth-child(3) {
+.seq-img-wrapper:nth-child(3) {
     top: 360px;
     left: 720px;
 }
 
 /* 0° Right */
-.seq-img:nth-child(4) {
+.seq-img-wrapper:nth-child(4) {
     top: 614.5px;
     left: 614.5px;
 }
 
 /* 45° Bottom Right */
-.seq-img:nth-child(5) {
+.seq-img-wrapper:nth-child(5) {
     top: 720px;
     left: 360px;
 }
 
 /* 90° Bottom */
-.seq-img:nth-child(6) {
+.seq-img-wrapper:nth-child(6) {
     top: 614.5px;
     left: 105.5px;
 }
 
 /* 135° Bottom Left */
-.seq-img:nth-child(7) {
+.seq-img-wrapper:nth-child(7) {
     top: 360px;
     left: 0px;
 }
 
 /* 180° Left */
-.seq-img:nth-child(8) {
+.seq-img-wrapper:nth-child(8) {
     top: 105.5px;
     left: 105.5px;
 }

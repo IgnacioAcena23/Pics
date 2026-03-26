@@ -31,20 +31,25 @@
         <section id="home" class="hero centered-hero">
             <div class="intro-blur">
                 <div class="hero-image-sequence-bg">
-                    <img src="_DSC0346.jpg" alt="Pvm" class="seq-img">
-                    <img src="../examplePics/_DSC7559.jpg" alt="MALALA" class="seq-img">
-                    <img src="../examplePics/_DSC8177.jpg" alt="FEVETI" class="seq-img">
-                    <img src="../examplePics/_DSC5874.jpg" alt="GC" class="seq-img">
-                    <img src="../examplePics/_DSC4746.jpg" alt="Morocho" class="seq-img">
-                    <img src="../examplePics/_DSC3742.jpg" alt="Yess" class="seq-img">
-                    <img src="../examplePics/_DSC0779.jpg" alt="UTB" class="seq-img">
-                    <img src="../examplePics/Morocho.jpg" alt="Morocho" class="seq-img">
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC0346.jpg" alt="Pvm" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC7559.jpg" alt="MALALA" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC8177.jpg" alt="FEVETI" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC5874.jpg" alt="GC" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC4746.jpg" alt="Morocho" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC3742.jpg" alt="Yess" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC0779.jpg" alt="UTB" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/Morocho.jpg" alt="Morocho" class="seq-img">
+                    </div>
                 </div>
             </div>
 
             <div class="hero-content">
                 <h1>Welcome to <br><span class="highlight">My Vision</span></h1>
-                <p>ARS LONGA, VITA BREVIS.</p>
+                <p id="scramble-text">ARS LONGA, VITA BREVIS.</p>
             </div>
         </section>
 
@@ -212,6 +217,60 @@
             </div>
         </div>
     </footer>
+
+    <!-- GSAP for Cursor-Driven Perspective Tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        const seqImgs = document.querySelectorAll('.seq-img');
+        gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d" });
+
+        const xTos = [];
+        const yTos = [];
+
+        seqImgs.forEach((img) => {
+            xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
+            yTos.push(gsap.quickTo(img, "rotationX", { ease: "power3", duration: 0.6 }));
+
+            // Hover scale effect
+            img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" }));
+            img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            const { innerWidth, innerHeight } = window;
+            const xPos = (e.clientX / innerWidth - 0.5) * 2; // -1 to 1
+            const yPos = (e.clientY / innerHeight - 0.5) * 2; // -1 to 1
+
+            xTos.forEach((xTo) => xTo(xPos * 30));
+            yTos.forEach((yTo) => yTo(-yPos * 30));
+        });
+
+        // GSAP Scramble Text Effect synced with the CSS blur entrance
+        const scrambleEl = document.getElementById("scramble-text");
+        if (scrambleEl) {
+            const finalStr = scrambleEl.innerText;
+            const chars = "!<>-_\\/[]{}—=+*^?#________";
+            // The blur fade-in takes 5.5s, starts fully revealing around 2.5s.
+            gsap.to({ p: 0 }, {
+                p: 1,
+                duration: 3.5,
+                delay: 2,
+                ease: "none",
+                onUpdate: function () {
+                    const progress = this.targets()[0].p;
+                    let result = "";
+                    for (let i = 0; i < finalStr.length; i++) {
+                        if (i < progress * finalStr.length) {
+                            result += finalStr[i];
+                        } else {
+                            result += finalStr[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+                        }
+                    }
+                    scrambleEl.innerText = result;
+                }
+            });
+        }
+    </script>
 
     <!-- Script interactivo para habilitar el agarre (drag) con el mouse en el carrusel -->
     <script>
