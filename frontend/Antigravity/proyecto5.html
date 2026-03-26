@@ -54,115 +54,48 @@
             transform: translateY(-2px);
         }
 
+        /* Curated photo grid - 3 columns, no cropping */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             max-width: 1200px;
             margin: 20px auto 100px;
             padding: 0 40px;
         }
 
-        .bento-gallery {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            grid-template-rows: auto auto !important;
-            gap: 16px !important;
-            width: 90vw !important;
-            height: auto !important;
-            padding: 40px 0 !important;
-        }
-
-        /* Perfect gapless masonry mappings for the 7 items */
-        .item-1 {
-            grid-column: span 1;
-            grid-row: 1;
-        }
-
-        .item-2 {
-            grid-column: span 2;
-            grid-row: 1;
-        }
-
-        /* Horizontal center */
-        .item-3 {
-            grid-column: span 1;
-            grid-row: 1;
-        }
-
-        .item-4 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-5 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-6 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-7 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .bento-item {
-            background: #0b0e14 !important;
-            border: none !important;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
-            display: block !important;
-            border-radius: 16px !important;
-            overflow: hidden !important;
-        }
-
-        .bento-item img {
-            width: 100% !important;
-            height: 100% !important;
-            display: block !important;
-            object-fit: cover !important;
-            border-radius: 0 !important;
-            transition: transform 0.4s ease;
-        }
-
-        .bento-container {
-            height: auto !important;
-            min-height: 100vh !important;
-            overflow: visible !important;
-            padding-top: 40px !important;
-        }
-
         .media-item {
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             background: #0b0e14;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .media-item img,
-        .media-item video {
+        .media-item.span-3 { grid-column: span 3; }
+        .media-item.span-2 { grid-column: span 2; }
+
+        .media-item img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
         }
 
-        .media-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .media-item.large {
-            grid-column: span 2;
-        }
+        .media-item:hover img { transform: scale(1.03); }
 
         @media (max-width: 768px) {
-            .media-item.large {
-                grid-column: span 1;
-                aspect-ratio: 4/3;
-            }
+            body { padding-top: 100px; }
+            .project-header { padding: 20px; }
+            .project-header h1 { font-size: 36px; }
+            .project-header p { font-size: 16px; }
+            .media-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 0 12px; }
+            .media-item.span-3 { grid-column: span 2; }
+            .media-item.span-2 { grid-column: span 2; }
+        }
+
+        @media (max-width: 480px) {
+            .media-grid { grid-template-columns: 1fr; }
+            .media-item.span-3, .media-item.span-2 { grid-column: span 1; }
         }
     </style>
 </head>
@@ -193,29 +126,52 @@
             <a href="index.html#works" class="back-link">&#8592; Back to Works</a>
         </section>
 
-        <!-- Galería de Medios: Puedes agregar cuantos "media-item" quieras duplicando el bloque -->
-        <section class="media-grid">
-            <div class="media-item large">
-                <!-- Ejemplo de Video -->
-                <video controls muted loop poster="../examplePics/_DSC3921.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-                    <source src="tu_video.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-            </div>
-            <div class="media-item">
-                <img src="_DSC7547.jpg" alt="Foto">
-            </div>
-            <div class="media-item">
-                <img src="_DSC7550.jpg" alt="Foto">
-            </div>
-            <div class="media-item">
-                <img src="_DSC7553.jpg" alt="Foto">
-            </div>
-            <div class="media-item">
-                <img src="_DSC7559.jpg" alt="Foto">
-            </div>
+        <!-- Galería de Fotos XV Jess -->
+        <section class="media-grid" id="gallery">
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3332.png" alt="XV Jess - H1"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3384.png" alt="XV Jess - V1"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3398.png" alt="XV Jess - V2"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3401.png" alt="XV Jess - V3"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3335.png" alt="XV Jess - H2"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3430.png" alt="XV Jess - V4"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3434.png" alt="XV Jess - V5"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3431.png" alt="XV Jess - V6"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3337.png" alt="XV Jess - H3"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3577.png" alt="XV Jess - V7"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3580.png" alt="XV Jess - V8"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3611.png" alt="XV Jess - V9"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3610.png" alt="XV Jess - H4"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3626.png" alt="XV Jess - V10"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3733.jpg" alt="XV Jess - V11"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3742.jpg" alt="XV Jess - V12"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3686.jpg" alt="XV Jess - H5"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3754.jpg" alt="XV Jess - V13"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3741.jpg" alt="XV Jess - V14"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3768.jpg" alt="XV Jess - V15"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3813.jpg" alt="XV Jess - H6"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3805.jpg" alt="XV Jess - V16"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3834.jpg" alt="XV Jess - V17"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3868.jpg" alt="XV Jess - V18"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3821.jpg" alt="XV Jess - H7"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3964.jpg" alt="XV Jess - V19"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3921.jpg" alt="XV Jess - V20"></div>
+            <div class="media-item"><img src="../examplePics/_DSC3969.jpg" alt="XV Jess - V21"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC3823.jpg" alt="XV Jess - H8"></div>
+            <div class="media-item"><img src="../examplePics/_DSC4024.jpg" alt="XV Jess - V22"></div>
+            <div class="media-item"><img src="../examplePics/_DSC4071.jpg" alt="XV Jess - V23"></div>
+            <div class="media-item"><img src="../examplePics/_DSC4025.jpg" alt="XV Jess - V24"></div>
+
+            <div class="media-item span-3"><img src="../examplePics/_DSC4013.jpg" alt="XV Jess - H9"></div>
+
+        </section>
     </main>
-
-
 
 </html>

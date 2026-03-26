@@ -23,7 +23,11 @@ body {
 }
 
 /* Custom Pointer Cursor for interactive elements */
-a, button, .logo, .works-carousel, .work-card {
+a,
+button,
+.logo,
+.works-carousel,
+.work-card {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff0022'/%3E%3Cstop offset='1' stop-color='%23220007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='12' y='2' width='4' height='10' fill='%23000000' rx='1'/%3E%3Crect x='17' y='5' width='4' height='8' fill='%23000000' rx='1'/%3E%3Crect x='7' y='5' width='4' height='9' fill='%23000000' rx='1'/%3E%3Crect x='22' y='7' width='4' height='7' fill='%23000000' rx='1'/%3E%3Crect x='7' y='13' width='19' height='12' fill='%23000000' rx='2'/%3E%3Crect x='13' y='3' width='2' height='9' fill='url(%23b)'/%3E%3Crect x='18' y='6' width='2' height='6' fill='url(%23b)'/%3E%3Crect x='8' y='6' width='2' height='7' fill='url(%23b)'/%3E%3Crect x='23' y='8' width='2' height='5' fill='url(%23b)'/%3E%3Crect x='8' y='14' width='17' height='10' fill='url(%23b)' rx='1' opacity='0.85'/%3E%3C/svg%3E") 12 2, pointer !important;
 }
 
@@ -915,5 +919,410 @@ section {
 
     .item-7 {
         display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE BREAKPOINTS
+   ============================================ */
+
+@media (max-width: 900px) {
+
+    /* --- Navigation --- */
+    nav {
+        padding: 0 16px;
+    }
+
+    .nav-links {
+        gap: 10px;
+        padding: 5px 5px 5px 14px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 7px 11px;
+    }
+
+    .logo img {
+        height: 36px;
+    }
+
+    /* --- Hero / Orbital Carousel --- */
+    .hero,
+    .centered-hero {
+        min-height: 700px;
+        padding-top: 80px;
+    }
+
+    .hero-image-sequence-bg {
+        width: 600px;
+        height: 600px;
+    }
+
+    .seq-img-wrapper {
+        width: 130px;
+        height: 130px;
+    }
+
+    .seq-img-wrapper:nth-child(1) {
+        top: 0px;
+        left: 235px;
+    }
+
+    .seq-img-wrapper:nth-child(2) {
+        top: 70px;
+        left: 413px;
+    }
+
+    .seq-img-wrapper:nth-child(3) {
+        top: 235px;
+        left: 470px;
+    }
+
+    .seq-img-wrapper:nth-child(4) {
+        top: 400px;
+        left: 413px;
+    }
+
+    .seq-img-wrapper:nth-child(5) {
+        top: 470px;
+        left: 235px;
+    }
+
+    .seq-img-wrapper:nth-child(6) {
+        top: 400px;
+        left: 57px;
+    }
+
+    .seq-img-wrapper:nth-child(7) {
+        top: 235px;
+        left: 0px;
+    }
+
+    .seq-img-wrapper:nth-child(8) {
+        top: 70px;
+        left: 57px;
+    }
+
+    .hero-content h1 {
+        font-size: 54px;
+    }
+
+    /* --- Works Carousel --- */
+    .work-card {
+        width: 300px;
+    }
+
+    .works-header h2 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* --- Header: stack logo + nav vertically --- */
+    header {
+        top: 0;
+        padding: 10px 0;
+        background: rgba(11, 14, 20, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .nav-links {
+        gap: 4px;
+        padding: 4px 4px 4px 10px;
+        width: auto;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    /* --- General Sections --- */
+    section {
+        padding: 140px 20px 40px;
+    }
+
+    /* --- Hero: text centered INSIDE the orbital ring --- */
+    .hero,
+    .centered-hero {
+        min-height: 620px;
+        overflow: visible;
+        padding-top: 0;
+    }
+
+    /* Hero content stays centered naturally (ring orbits AROUND it) */
+    .hero-content {
+        margin-top: 0;
+        position: relative;
+        z-index: 10;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    /* Ring re-centered around the text (same as desktop behavior) */
+    .hero-image-sequence-bg {
+        width: 380px;
+        height: 380px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .seq-img-wrapper {
+        width: 88px;
+        height: 88px;
+    }
+
+    /* Redistribute 8 images evenly on 380px ring (radius=190, center=190) */
+    .seq-img-wrapper:nth-child(1) {
+        top: 0px;
+        left: 146px;
+    }
+
+    /* top */
+    .seq-img-wrapper:nth-child(2) {
+        top: 44px;
+        left: 258px;
+    }
+
+    /* top-right */
+    .seq-img-wrapper:nth-child(3) {
+        top: 146px;
+        left: 292px;
+    }
+
+    /* right */
+    .seq-img-wrapper:nth-child(4) {
+        top: 248px;
+        left: 258px;
+    }
+
+    /* bottom-right */
+    .seq-img-wrapper:nth-child(5) {
+        top: 292px;
+        left: 146px;
+    }
+
+    /* bottom */
+    .seq-img-wrapper:nth-child(6) {
+        top: 248px;
+        left: 34px;
+    }
+
+    /* bottom-left */
+    .seq-img-wrapper:nth-child(7) {
+        top: 146px;
+        left: 0px;
+    }
+
+    /* left */
+    .seq-img-wrapper:nth-child(8) {
+        top: 44px;
+        left: 34px;
+    }
+
+    /* top-left */
+
+    /* --- About Section --- */
+    .about-split-section {
+        padding: 140px 20px 40px;
+    }
+
+    /* --- Works Section --- */
+    .works-section {
+        padding: 100px 0 40px;
+    }
+
+    .works-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 0 20px;
+    }
+
+    .works-header h2 {
+        font-size: 36px;
+    }
+
+    .works-carousel {
+        padding: 20px 20px 60px 20px;
+        gap: 24px;
+    }
+
+    .work-card {
+        width: 260px;
+    }
+
+    .work-info h3 {
+        font-size: 22px;
+    }
+
+    /* --- Contact Section --- */
+    #contact {
+        padding: 80px 20px 40px;
+    }
+
+    /* --- Brands --- */
+    .brands-marquee {
+        padding: 40px 0;
+    }
+
+    .marquee-group {
+        gap: 60px;
+        padding-right: 60px;
+    }
+
+    .marquee-group img {
+        max-height: 50px;
+        max-width: 100px;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+        padding: 40px 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .footer-logo {
+        align-items: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Extremely small phones */
+    .logo img {
+        height: 24px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+        padding: 5px 7px;
+    }
+
+    /* --- Hero --- */
+    .hero,
+    .centered-hero {
+        min-height: 500px;
+        overflow: visible;
+    }
+
+    .hero-content {
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+    }
+
+    .hero-image-sequence-bg {
+        width: 300px;
+        height: 300px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .seq-img-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Redistribute on 300px ring (radius=150, center=150) */
+    .seq-img-wrapper:nth-child(1) {
+        top: 0px;
+        left: 115px;
+    }
+
+    .seq-img-wrapper:nth-child(2) {
+        top: 34px;
+        left: 205px;
+    }
+
+    .seq-img-wrapper:nth-child(3) {
+        top: 115px;
+        left: 230px;
+    }
+
+    .seq-img-wrapper:nth-child(4) {
+        top: 196px;
+        left: 205px;
+    }
+
+    .seq-img-wrapper:nth-child(5) {
+        top: 230px;
+        left: 115px;
+    }
+
+    .seq-img-wrapper:nth-child(6) {
+        top: 196px;
+        left: 25px;
+    }
+
+    .seq-img-wrapper:nth-child(7) {
+        top: 115px;
+        left: 0px;
+    }
+
+    .seq-img-wrapper:nth-child(8) {
+        top: 34px;
+        left: 25px;
+    }
+
+    /* --- Works --- */
+    .work-card {
+        width: 220px;
+    }
+
+    .work-info h3 {
+        font-size: 18px;
+    }
+
+    /* --- About --- */
+    .about-name {
+        font-size: 36px;
+    }
+
+    .about-role {
+        font-size: 26px;
     }
 }
