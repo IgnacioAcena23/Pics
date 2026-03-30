@@ -19,7 +19,11 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     line-height: 1.6;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
 }
+
+
 
 /* Header & Transparent Nav */
 header {
@@ -43,6 +47,7 @@ nav {
     display: flex;
     align-items: center;
     text-decoration: none;
+    margin-left: -30px;
 }
 
 .logo img {
@@ -211,7 +216,7 @@ section {
     text-align: center;
     letter-spacing: -2px;
     opacity: 0;
-    animation: heroTextReveal 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+    animation: heroTextReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
     position: relative;
     z-index: 100;
 }
@@ -224,7 +229,7 @@ section {
     text-align: center;
     max-width: 600px;
     font-weight: 300;
-    animation: pBlurFade 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: pBlurFade 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .highlight {
@@ -249,63 +254,70 @@ section {
     pointer-events: none;
 }
 
-.seq-img {
+.seq-img-wrapper {
     position: absolute;
     width: 180px;
     height: 180px;
     border-radius: 20px;
+    animation: counterRotate 35s linear infinite;
+    pointer-events: none;
+}
+
+.seq-img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
     /* Square with slight rounding */
     object-fit: cover;
-    animation: counterRotate 35s linear infinite;
     box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
     border: 2px solid transparent;
     pointer-events: auto;
 }
 
 /* Placement inside the 900x900 ring. Center is 450. Radius boundary is 360. */
-.seq-img:nth-child(1) {
+.seq-img-wrapper:nth-child(1) {
     top: 0px;
     left: 360px;
 }
 
 /* 270° Top */
-.seq-img:nth-child(2) {
+.seq-img-wrapper:nth-child(2) {
     top: 105.5px;
     left: 614.5px;
 }
 
 /* 315° Top Right */
-.seq-img:nth-child(3) {
+.seq-img-wrapper:nth-child(3) {
     top: 360px;
     left: 720px;
 }
 
 /* 0° Right */
-.seq-img:nth-child(4) {
+.seq-img-wrapper:nth-child(4) {
     top: 614.5px;
     left: 614.5px;
 }
 
 /* 45° Bottom Right */
-.seq-img:nth-child(5) {
+.seq-img-wrapper:nth-child(5) {
     top: 720px;
     left: 360px;
 }
 
 /* 90° Bottom */
-.seq-img:nth-child(6) {
+.seq-img-wrapper:nth-child(6) {
     top: 614.5px;
     left: 105.5px;
 }
 
 /* 135° Bottom Left */
-.seq-img:nth-child(7) {
+.seq-img-wrapper:nth-child(7) {
     top: 360px;
     left: 0px;
 }
 
 /* 180° Left */
-.seq-img:nth-child(8) {
+.seq-img-wrapper:nth-child(8) {
     top: 105.5px;
     left: 105.5px;
 }
@@ -348,6 +360,98 @@ section {
 .section-bloque p {
     font-size: 18px;
     color: var(--text-secondary);
+}
+
+/* About Split Layout (Jamie Alexander style) */
+.about-split-section {
+    min-height: 100vh;
+    padding: 140px 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-split-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+}
+
+.about-image-col {
+    flex: 0 0 40%;
+    max-width: 500px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.about-image-col img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.about-text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-name {
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    letter-spacing: -1px;
+}
+
+.about-role {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--accent);
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.about-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+    font-weight: 300;
+    text-align: justify;
+}
+
+@media (max-width: 992px) {
+    .about-split-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .about-name {
+        font-size: 50px;
+    }
+
+    .about-role {
+        font-size: 35px;
+    }
+
+    .about-image-col img {
+        aspect-ratio: 16/9;
+    }
 }
 
 /* Works Section Carousel */
@@ -657,7 +761,36 @@ section {
     font-size: 14px;
 }
 
+.social-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
 
+.social-links a {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a svg {
+    width: 22px;
+    height: 22px;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    background: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 0, 34, 0.4);
+}
 
 /* --- GSAP Scrubbed Bento Gallery --- */
 .bento-container {
@@ -731,6 +864,11 @@ section {
     grid-row: span 1;
 }
 
+.item-7 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
 @media (max-width: 768px) {
     .bento-container {
         height: auto;
@@ -738,21 +876,42 @@ section {
         padding: 120px 20px 40px;
     }
 
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-
-    .footer-logo,
-    .social-links {
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-
     .bento-gallery {
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 150px);
         height: auto;
+    }
+
+    .item-1 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .item-2 {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .item-3 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .item-4 {
+        display: none;
+    }
+
+    .item-5 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .item-6 {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .item-7 {
+        display: none;
     }
 }

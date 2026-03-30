@@ -33,7 +33,7 @@
     <header>
         <nav>
             <a href="#home" class="logo">
-                <img src="examplePics/1Recurso.png" alt="Villegas Logo">
+                <img src="examplePics/1Recurso 2.png" alt="Villegas Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
@@ -47,20 +47,27 @@
     <main>
         <!-- Inicio (Home) -->
         <section id="home" class="hero centered-hero">
-            <div class="hero-image-sequence-bg">
-                <img src="examplePics/_DSC0346.jpg" alt="DJ Motion 1" class="seq-img">
-                <img src="examplePics/_DSC7559.jpg" alt="DJ Motion 2" class="seq-img">
-                <img src="examplePics/_DSC7553.jpg" alt="DJ Motion 3" class="seq-img">
-                <img src="examplePics/_DSC7547.jpg" alt="DJ Motion 4" class="seq-img">
-                <img src="examplePics/_DSC7550.jpg" alt="DJ Motion 5" class="seq-img">
-                <img src="examplePics/_DSC7550.jpg" alt="DJ Motion 6" class="seq-img">
-                <img src="examplePics/_DSC0346.jpg" alt="DJ Motion 7" class="seq-img">
-                <img src="examplePics/_DSC7547.jpg" alt="DJ Motion 8" class="seq-img">
+            <div class="intro-blur">
+                <div class="hero-image-sequence-bg">
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC0346.jpg" alt="Pvm" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC7559.jpg" alt="MALALA" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC8177.jpg" alt="FEVETI" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC5874.jpg" alt="GC" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC4746.jpg" alt="Morocho" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC3742.jpg" alt="Yess" class="seq-img">
+                    </div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/_DSC0779.jpg" alt="UTB" class="seq-img"></div>
+                    <div class="seq-img-wrapper"><img src="../examplePics/Morocho.jpg" alt="Morocho" class="seq-img">
+                    </div>
+                </div>
             </div>
 
             <div class="hero-content">
                 <h1>Welcome to <br><span class="highlight">My Vision</span></h1>
-                <p>La vida es Corta, El Arte es Eterno.</p>
+                <p id="scramble-text">ARS LONGA, VITA BREVIS.</p>
             </div>
         </section>
 
@@ -163,14 +170,14 @@
         <section id="brands" class="brands-marquee">
             <h3
                 style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7;">
-                Marcas que confían en mí</h3>
+                Brands enveloped by my vision.</h3>
             <div class="marquee-container">
                 <div class="marquee-track">
                     <!-- Grupo 1 -->
                     <div class="marquee-group">
                         <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
                         <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/carabobo2.jpg" alt="Marca 3">
+                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
                         <img src="examplePics/Grupo 5.png" alt="Marca 4">
                         <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
                     </div>
@@ -178,7 +185,7 @@
                     <div class="marquee-group">
                         <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
                         <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/carabobo2.jpg" alt="Marca 3">
+                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
                         <img src="examplePics/Grupo 5.png" alt="Marca 4">
                         <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
                     </div>
@@ -247,90 +254,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Script interactivo para habilitar el agarre (drag) con el mouse en el carrusel -->
-    <script>
-        const slider = document.querySelector('.works-carousel');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let isDragging = false;
-
-        if (slider) {
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                isDragging = false;
-                slider.classList.add('active');
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                isDown = false;
-                slider.classList.remove('active');
-            });
-
-            slider.addEventListener('mouseup', () => {
-                isDown = false;
-                slider.classList.remove('active');
-            });
-
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2; // Multiplicador de velocidad de deslice
-
-                if (Math.abs(walk) > 5) {
-                    isDragging = true;
-                }
-
-                slider.scrollLeft = scrollLeft - walk;
-            });
-
-            // Evitar que el clic abra la página si el usuario simplemente estaba arrastrando la galería
-            const cards = document.querySelectorAll('.work-card');
-            cards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (isDragging) {
-                        e.preventDefault();
-                    }
-                });
-            });
-        }
-
-        // --- Navegación Inteligente (Scroll Spy) ---
-        const sections = document.querySelectorAll("section[id]");
-        const navItems = document.querySelectorAll(".nav-links a");
-
-        window.addEventListener("scroll", () => {
-            let current = "";
-
-            // Detectamos qué seccion está en la pantalla principal
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            // Asignamos la clase "active" al enlace correspondiente
-            navItems.forEach((item) => {
-                item.classList.remove("active");
-                if (item.getAttribute("href") === `#${current}`) {
-                    item.classList.add("active");
-                }
-            });
-        });
-
-        // Aplicamos el cambio directo también al hacer click
-        navItems.forEach(link => {
-            link.addEventListener('click', function () {
-                navItems.forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
