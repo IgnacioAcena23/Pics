@@ -625,7 +625,9 @@ section {
 
 .social-links {
     display: flex;
+    justify-content: center;
     gap: 16px;
+    width: 100%;
 }
 
 .social-links a {

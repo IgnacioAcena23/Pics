@@ -1,45 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villegas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="1Recurso.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        html.lenis,
-        html.lenis body {
-            height: auto;
-        }
-
-        .lenis.lenis-smooth {
-            scroll-behavior: auto !important;
-        }
-
-        .lenis.lenis-smooth [data-lenis-prevent] {
-            overscroll-behavior: contain;
-        }
-
-        .lenis.lenis-stopped {
-            overflow: hidden;
-        }
-
-        .lenis.lenis-scrolling iframe {
-            pointer-events: none;
-        }
-    </style>
 </head>
 
 <body>
+    <!-- Barra de navegación fluida con Glassmorphism -->
     <header>
         <nav>
             <a href="#home" class="logo">
-                <img src="examplePics/1Recurso.png" alt="Villegas Logo">
+                <img src="1Recurso.png" alt="Villegas Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#works">Works</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="contact-btn">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -47,15 +29,17 @@
     <main>
         <!-- Inicio (Home) -->
         <section id="home" class="hero centered-hero">
-            <div class="hero-image-sequence-bg">
-                <img src="examplePics/_DSC0346.jpg" alt="DJ Motion 1" class="seq-img">
-                <img src="examplePics/_DSC7559.jpg" alt="DJ Motion 2" class="seq-img">
-                <img src="examplePics/_DSC7553.jpg" alt="DJ Motion 3" class="seq-img">
-                <img src="examplePics/_DSC7547.jpg" alt="DJ Motion 4" class="seq-img">
-                <img src="examplePics/_DSC7550.jpg" alt="DJ Motion 5" class="seq-img">
-                <img src="examplePics/_DSC7550.jpg" alt="DJ Motion 6" class="seq-img">
-                <img src="examplePics/_DSC0346.jpg" alt="DJ Motion 7" class="seq-img">
-                <img src="examplePics/_DSC7547.jpg" alt="DJ Motion 8" class="seq-img">
+            <div class="intro-blur">
+                <div class="hero-image-sequence-bg">
+                    <img src="_DSC0346.jpg" alt="DJ Motion 1" class="seq-img">
+                    <img src="_DSC7559.jpg" alt="DJ Motion 2" class="seq-img">
+                    <img src="_DSC7553.jpg" alt="DJ Motion 3" class="seq-img">
+                    <img src="_DSC7547.jpg" alt="DJ Motion 4" class="seq-img">
+                    <img src="foto1.jpg" alt="DJ Motion 5" class="seq-img">
+                    <img src="_DSC7550.jpg" alt="DJ Motion 6" class="seq-img">
+                    <img src="_DSC0346.jpg" alt="DJ Motion 7" class="seq-img">
+                    <img src="_DSC7547.jpg" alt="DJ Motion 8" class="seq-img">
+                </div>
             </div>
 
             <div class="hero-content">
@@ -65,37 +49,25 @@
         </section>
 
         <!-- Secciones adicionales definidas por los href -->
-        <section id="about">
-            <div class="hero" style="min-height: 45vh;">
-                <div class="hero-content">
-                    <h2 class="about-title"
-                        style="font-size: clamp(2.8rem, 7.5vw, 5.8rem); margin-bottom: 10px; padding: 10px 15px 10px 15px; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        ¿Quién soy?</h2>
-                    <p class="hero-subtitle">Desplázate hacia abajo</p>
-                </div>
-            </div>
+        <section id="about" class="about-split-section">
             <div class="about-split-container">
                 <div class="about-image-col">
-                    <img src="examplePics/_DSC0346.jpg" alt="Armando Villegas">
+                    <img src="_DSC0346.jpg" alt="Armando Villegas">
                 </div>
                 <div class="about-text-col">
                     <h2 class="about-name">Armando Villegas.</h2>
                     <h3 class="about-role">Director Cinematográfico.</h3>
                     <p class="about-desc">
-                        Con más de 3 años de experiencia en la industria audiovisual, Armando Villegas está
-                        profundamente especializado en la dirección cinematográfica. Fundamentalmente un cineasta por
-                        vocación, las habilidades de Armando en dirección se expanden a la cinematografía, el montaje
-                        narrativo, la colorimetría avanzada y la producción ejecutiva de contenido impactante.
+                        Con más de 3 años de experiencia en la industria audiovisual, Armando Villegas está profundamente especializado en la dirección cinematográfica. Fundamentalmente un cineasta por vocación, las habilidades de Armando en dirección se expanden a la cinematografía, el montaje narrativo, la colorimetría avanzada y la producción ejecutiva de contenido impactante.
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="works" class="works-section" style="padding-bottom: 20px;">
+        <!-- Sección de Proyectos (Carrusel Horizontal) -->
+        <section id="works" class="works-section">
             <div class="works-header">
-                <h2 class="works-title"
-                    style="font-size: clamp(2.3rem, 5.5vw, 4.2rem); margin-bottom: 0px; padding: 10px 15px 10px 0; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; transform-origin: left center;">
-                    Works</h2>
+                <h2>Works</h2>
                 <div class="scroll-indicator">
                     <span style="color: var(--accent);">&#8592;</span> Desliza <span>&#8594;</span>
                 </div>
@@ -104,7 +76,7 @@
             <div class="works-carousel">
                 <!-- Proyecto 1 -->
                 <a href="proyecto1.html" class="work-card">
-                    <img src="examplePics/_DSC8275.jpg" alt="DJ Set Live">
+                    <img src="../examplePics/_DSC8275.jpg" alt="DJ Set Live">
                     <div class="work-info">
                         <h3>Federacion Venezolana de Tiro</h3>
                         <p>Photoshoot</p>
@@ -113,7 +85,7 @@
 
                 <!-- Proyecto 2 -->
                 <a href="proyecto2.html" class="work-card">
-                    <img src="examplePics/_DSC0346.jpg" alt="Producción">
+                    <img src="../examplePics/_DSC0346.jpg" alt="Producción">
                     <div class="work-info">
                         <h3>Od. Pierina Villegas</h3>
                         <p>Photoshoot</p>
@@ -122,7 +94,7 @@
 
                 <!-- Proyecto 3 -->
                 <a href="proyecto3.html" class="work-card">
-                    <img src="examplePics/_DSC7553.jpg" alt="Gira Nacional">
+                    <img src="_DSC7553.jpg" alt="Gira Nacional">
                     <div class="work-info">
                         <h3>MALALA</h3>
                         <p>Photoshoot</p>
@@ -131,7 +103,7 @@
 
                 <!-- Proyecto 4 -->
                 <a href="proyecto4.html" class="work-card">
-                    <img src="examplePics/_DSC7559.jpg" alt="Remix Oficial">
+                    <img src="_DSC7559.jpg" alt="Remix Oficial">
                     <div class="work-info">
                         <h3>Oasis (Remix)</h3>
                         <p>Remix Oficial</p>
@@ -140,7 +112,7 @@
 
                 <!-- Proyecto 5 -->
                 <a href="proyecto5.html" class="work-card">
-                    <img src="examplePics/_DSC7607.jpg" alt="Lanzamiento">
+                    <img src="foto1.jpg" alt="Lanzamiento">
                     <div class="work-info">
                         <h3>Midnight EP</h3>
                         <p>Lanzamiento</p>
@@ -149,13 +121,10 @@
             </div>
         </section>
 
-        <section id="contact" class="section-bloque" style="justify-content: flex-start; padding-top: 20px;">
-            <h2 class="contact-title"
-                style="font-size: clamp(2.3rem, 5.5vw, 4.2rem); margin-bottom: 20px; padding: 10px 15px 10px 0; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; transform-origin: left center;">
-                Contact</h2>
+        <section id="contact" class="section-bloque" style="text-align: center; max-width: 900px;">
+            <h2 style="font-size: 56px; font-weight: 800; letter-spacing: -2px; margin-bottom: 24px;">Contacto</h2>
             <p style="font-size: 24px; line-height: 1.6; font-weight: 300; color: var(--text-primary);">
-                A veces, una historia solo necesita el ángulo correcto para volverse inolvidable. Si buscas una
-                narrativa que rompa lo convencional y te envuelva en una perspectiva cinematográfica única, hablemos.
+                A veces, una historia solo necesita el ángulo correcto para volverse inolvidable. Si buscas una narrativa que rompa lo convencional y te envuelva en una perspectiva cinematográfica única, hablemos.
             </p>
         </section>
 
@@ -163,34 +132,36 @@
         <section id="brands" class="brands-marquee">
             <h3
                 style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7;">
-                Marcas que confían en mí</h3>
+                Brands enveloped by my vision.</h3>
             <div class="marquee-container">
                 <div class="marquee-track">
                     <!-- Grupo 1 -->
                     <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/carabobo2.jpg" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
+                        <img src="logo_Federación venezolana de tiro-01.png" alt="Marca 1">
+                        <img src="LOGO_Mesa de trabajo 1.png" alt="Marca 2">
+                        <img src="carabobo2.jpg" alt="Marca 3">
+                        <img src="Grupo 5.png" alt="Marca 4">
+                        <img src="logo ASOTILA.jpg" alt="Marca 5">
                     </div>
                     <!-- Grupo 2 (Duplicado para lograr un loop continuo y sin cortes) -->
                     <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/carabobo2.jpg" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
+                        <img src="logo_Federación venezolana de tiro-01.png" alt="Marca 1">
+                        <img src="LOGO_Mesa de trabajo 1.png" alt="Marca 2">
+                        <img src="carabobo2.jpg" alt="Marca 3">
+                        <img src="Grupo 5.png" alt="Marca 4">
+                        <img src="logo ASOTILA.jpg" alt="Marca 5">
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Pie de Página (Footer) y Redes Sociales -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="examplePics/1Recurso.png" alt="Villegas Logo" style="height: 32px; object-fit: contain;">
+                <img src="1Recurso.png" alt="Villegas Logo"
+                    style="height: 32px; object-fit: contain; filter: grayscale(100%) opacity(0.6);">
                 <div class="location-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -204,46 +175,36 @@
                 </div>
             </div>
             <p>&copy; 2023 Villegas. Todos los derechos reservados.</p>
-            <div class="footer-right-column">
-                <a href="mailto:ftsaevc@gmail.com" class="email-link">
+            <div class="social-links">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
-                    <span>ftsaevc@gmail.com</span>
                 </a>
-                <div class="social-links">
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram" class="social-instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
-                        rel="noopener noreferrer" aria-label="TikTok" class="social-tiktok">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-                        </svg>
-                    </a>
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
-                        aria-label="YouTube" class="social-youtube">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
-                            </path>
-                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
-                        </svg>
-                    </a>
-                </div>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
+                    rel="noopener noreferrer" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                    </svg>
+                </a>
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
+                    aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                        </path>
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                    </svg>
+                </a>
             </div>
         </div>
     </footer>
@@ -331,10 +292,6 @@
             });
         });
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="script.js"></script>
 </body>
+
+</html>
