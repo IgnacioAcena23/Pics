@@ -121,7 +121,7 @@ section {
     padding-top: 100px;
     text-align: center;
     min-height: 1000px;
-    overflow: hidden;
+    overflow: visible;
     /* Contains the giant orbit ring horizontally */
 }
 
@@ -193,7 +193,7 @@ section {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    animation: orbitBlurFade 5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: orbitBlurFade 0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .hero-content {
@@ -249,28 +249,75 @@ section {
     pointer-events: none;
 }
 
-.seq-img {
+.seq-img-wrapper {
     position: absolute;
     width: 180px;
     height: 180px;
     border-radius: 20px;
+    animation: counterRotate 35s linear infinite;
+    pointer-events: none;
+}
+
+.seq-img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
     /* Square with slight rounding */
     object-fit: cover;
-    animation: counterRotate 35s linear infinite;
     box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
     border: 2px solid transparent;
     pointer-events: auto;
 }
 
 /* Placement inside the 900x900 ring. Center is 450. Radius boundary is 360. */
-.seq-img:nth-child(1) { top: 0px; left: 360px; }       /* 270° Top */
-.seq-img:nth-child(2) { top: 105.5px; left: 614.5px; } /* 315° Top Right */
-.seq-img:nth-child(3) { top: 360px; left: 720px; }     /* 0° Right */
-.seq-img:nth-child(4) { top: 614.5px; left: 614.5px; } /* 45° Bottom Right */
-.seq-img:nth-child(5) { top: 720px; left: 360px; }     /* 90° Bottom */
-.seq-img:nth-child(6) { top: 614.5px; left: 105.5px; } /* 135° Bottom Left */
-.seq-img:nth-child(7) { top: 360px; left: 0px; }       /* 180° Left */
-.seq-img:nth-child(8) { top: 105.5px; left: 105.5px; } /* 225° Top Left */
+.seq-img-wrapper:nth-child(1) {
+    top: 0px;
+    left: 360px;
+}
+
+/* 270° Top */
+.seq-img-wrapper:nth-child(2) {
+    top: 105.5px;
+    left: 614.5px;
+}
+
+/* 315° Top Right */
+.seq-img-wrapper:nth-child(3) {
+    top: 360px;
+    left: 720px;
+}
+
+/* 0° Right */
+.seq-img-wrapper:nth-child(4) {
+    top: 614.5px;
+    left: 614.5px;
+}
+
+/* 45° Bottom Right */
+.seq-img-wrapper:nth-child(5) {
+    top: 720px;
+    left: 360px;
+}
+
+/* 90° Bottom */
+.seq-img-wrapper:nth-child(6) {
+    top: 614.5px;
+    left: 105.5px;
+}
+
+/* 135° Bottom Left */
+.seq-img-wrapper:nth-child(7) {
+    top: 360px;
+    left: 0px;
+}
+
+/* 180° Left */
+.seq-img-wrapper:nth-child(8) {
+    top: 105.5px;
+    left: 105.5px;
+}
+
+/* 225° Top Left */
 
 @keyframes rotateCircle {
     0% {
@@ -334,7 +381,7 @@ section {
     max-width: 500px;
     position: relative;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about-image-col img {
@@ -387,18 +434,91 @@ section {
         text-align: center;
         gap: 40px;
     }
+
     .about-name {
         font-size: 50px;
     }
+
     .about-role {
         font-size: 35px;
     }
+
     .about-image-col img {
         aspect-ratio: 16/9;
     }
 }
 
 /* Works Section Carousel */
+.works-section {
+    padding: 140px 0 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    width: 100%;
+}
+
+.works-header h2 {
+    font-size: 56px;
+    font-weight: 800;
+}
+
+.scroll-indicator {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.works-carousel {
+    display: flex;
+    gap: 40px;
+    /* Slightly more gap for breathing room */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 40px 100px 40px;
+    cursor: grab;
+
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.works-carousel.active {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    /* Smooths dragging with mouse */
+}
+
+.works-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Carousel Entrance Animation */
+@keyframes cardSequenceFade {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .works-section {
     padding: 140px 0 60px;
     min-height: 100vh;
@@ -494,23 +614,23 @@ section {
 
 /* Cascading entrance logic */
 .work-card:nth-child(1) {
-    animation-delay: 5.0s;
+    animation-delay: 3.8s;
 }
 
 .work-card:nth-child(2) {
-    animation-delay: 5.2s;
+    animation-delay: 4.0s;
 }
 
 .work-card:nth-child(3) {
-    animation-delay: 5.4s;
+    animation-delay: 4.2s;
 }
 
 .work-card:nth-child(4) {
-    animation-delay: 5.6s;
+    animation-delay: 4.4s;
 }
 
 .work-card:nth-child(5) {
-    animation-delay: 5.8s;
+    animation-delay: 4.6s;
 }
 
 .work-card img {
@@ -596,7 +716,7 @@ section {
     content: '';
     position: absolute;
     top: 0;
-    width: 200px;
+    width: 450px;
     height: 100%;
     z-index: 2;
     pointer-events: none;
@@ -706,9 +826,8 @@ section {
 }
 
 .social-links {
-    flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 16px;
 }
 
@@ -743,7 +862,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     background: #0b0e14;
     z-index: 10;
@@ -761,7 +880,7 @@ section {
 
 .bento-item {
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     will-change: transform;
     background: #111;
