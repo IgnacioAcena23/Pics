@@ -1,29 +1,7 @@
-// Registramos los plugins de ScrollTrigger y ScrollToPlugin al inicio
+// 1. Registro de Plugins de GSAP (ScrollTrigger para animaciones y ScrollToPlugin para navegación interna)
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// 1. Configuración e Inicialización de Lenis
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva de suavidad
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false,
-});
-
-// 2. Sincronizar Lenis interno del scroll con GSAP ScrollTrigger
-// Esto hace que las animaciones no tengan nada de "lag" o retraso
-lenis.on('scroll', ScrollTrigger.update);
-
-// Usar el requestAnimationFrame estándar del explorador es más seguro para la rueda del mouse
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
+// Usamos el Scroll nativo del navegador para una mejor estabilidad y compatibilidad.
 
 // --- Navegación Activa Inteligente ---
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -171,7 +149,7 @@ if (scrambleEl) {
     gsap.to({ p: 0 }, {
         p: 1,
         duration: 4,
-        delay: 0.8,
+        delay: 0,
         ease: "none",
         onUpdate: function () {
             const progress = this.targets()[0].p;

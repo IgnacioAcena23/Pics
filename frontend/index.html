@@ -5,28 +5,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        html.lenis,
-        html.lenis body {
-            height: auto;
-        }
-
-        .lenis.lenis-smooth {
-            scroll-behavior: auto !important;
-        }
-
-        .lenis.lenis-smooth [data-lenis-prevent] {
-            overscroll-behavior: contain;
-        }
-
-        .lenis.lenis-stopped {
-            overflow: hidden;
-        }
-
-        .lenis.lenis-scrolling iframe {
-            pointer-events: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -78,7 +56,6 @@
                     <h2 class="about-title"
                         style="font-size: clamp(2.8rem, 7.5vw, 5.8rem); margin-bottom: 10px; padding: 10px 15px 10px 15px; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         ¿Quién soy?</h2>
-                    <p class="hero-subtitle">Desplázate hacia abajo</p>
                 </div>
             </div>
             <div class="about-split-container">
@@ -184,7 +161,7 @@
                     <!-- Grupo 2 (Duplicado para lograr un loop continuo y sin cortes) -->
                     <div class="marquee-group">
                         <img src="../examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src=../examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
+                        <img src="../examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
                         <img src="../examplePics/logo-blanco.png" alt="Marca 3">
                         <img src="../examplePics/Grupo 5.png" alt="Marca 4">
                         <img src="../examplePics/logo ASOTILA.jpg" alt="Marca 5">
@@ -212,44 +189,49 @@
             </div>
             <p id="copy-content">&copy; 2023 Villegas. Todos los derechos reservados.</p>
             <div class="footer-right-column">
-                <a href="mailto:ftsaevc@gmail.com" class="email-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>ftsaevc@gmail.com</span>
-                </a>
-                <div class="social-links">
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram" class="social-instagram">
+                <div class="footer-email-section">
+                    <a href="mailto:ftsaevc@gmail.com" class="email-link">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
-                        rel="noopener noreferrer" aria-label="TikTok" class="social-tiktok">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-                        </svg>
-                    </a>
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
-                        aria-label="YouTube" class="social-youtube">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
-                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                            <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
+                        <span>ftsaevc@gmail.com</span>
                     </a>
+                </div>
+                <div class="footer-social-section">
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram" class="social-instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
+                            rel="noopener noreferrer" aria-label="TikTok" class="social-tiktok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube" class="social-youtube">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,6 +240,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>

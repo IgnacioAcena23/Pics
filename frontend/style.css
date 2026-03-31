@@ -253,7 +253,7 @@ nav {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    animation: orbitBlurFade 5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: orbitBlurFade 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .hero-content {
@@ -361,6 +361,28 @@ nav {
     left: 105.5px;
 }
 
+/* 225° Top Left */
+
+@keyframes rotateCircle {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes counterRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
 /* ==========================================
    4. TITLES & SECTIONS
    ========================================== */
@@ -404,6 +426,9 @@ section {
 .works-section {
     padding: 140px 0 60px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .works-header {
@@ -414,6 +439,11 @@ section {
     max-width: 1200px;
     margin: 0 auto 40px auto;
     width: 100%;
+}
+
+.works-header h2 {
+    font-size: 56px;
+    font-weight: 800;
 }
 
 .scroll-indicator {
@@ -429,35 +459,82 @@ section {
 .works-carousel {
     display: flex;
     gap: 40px;
+    /* Slightly more gap for breathing room */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 20px 40px 100px 40px;
     cursor: grab;
+
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.works-carousel.active {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    /* Smooths dragging with mouse */
 }
 
 .works-carousel::-webkit-scrollbar {
     display: none;
 }
 
-.works-carousel.active {
-    cursor: grabbing;
-    scroll-snap-type: none;
+/* Carousel Entrance Animation */
+@keyframes cardSequenceFade {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .work-card {
     flex: 0 0 auto;
     width: 400px;
     aspect-ratio: 1080 / 1350;
+    /* Mathematical exact ratio 4:5 scaling directly up to high res */
+    position: relative;
     border-radius: 20px;
     overflow: hidden;
     scroll-snap-align: center;
+    /* Snaps gracefully to screen center */
     text-decoration: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     background: #111;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    /* Auto-reveal sync with cinematic blur */
     opacity: 0;
-    animation: cardSequenceFade 1s forwards;
+    animation: cardSequenceFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Cascading entrance logic */
+.work-card:nth-child(1) {
+    animation-delay: 5.0s;
+}
+
+.work-card:nth-child(2) {
+    animation-delay: 5.2s;
+}
+
+.work-card:nth-child(3) {
+    animation-delay: 5.4s;
+}
+
+.work-card:nth-child(4) {
+    animation-delay: 5.6s;
+}
+
+.work-card:nth-child(5) {
+    animation-delay: 5.8s;
 }
 
 .work-card img {
@@ -465,20 +542,26 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .work-card::after {
     content: '';
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(11, 14, 20, 0.95), transparent 60%);
+    background: linear-gradient(to top, rgba(11, 14, 20, 0.95) 0%, rgba(11, 14, 20, 0.2) 60%, transparent 100%);
+    z-index: 1;
 }
 
 .work-info {
     position: absolute;
     bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 40px 30px;
     z-index: 2;
     transition: transform 0.4s ease;
@@ -488,6 +571,7 @@ section {
     color: #ffffff;
     font-size: 32px;
     margin-bottom: 8px;
+    font-weight: 800;
 }
 
 .work-info p {
@@ -505,6 +589,12 @@ section {
 
 .work-card:hover img {
     transform: scale(1.08);
+    /* Zoom on hover */
+}
+
+.work-card:hover .work-info {
+    transform: translateY(-8px);
+    /* Text floats up */
 }
 
 /* ==========================================
@@ -586,9 +676,41 @@ section {
    7. MARQUEE & FOOTER
    ========================================== */
 .brands-marquee {
+    min-height: auto;
     padding: 60px 0;
+    width: 100%;
     background: #0b0e14;
+    /* Blend with body */
     border-top: 1px solid rgba(255, 0, 34, 0.1);
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    /* Prevents logos from getting cut off when scaling */
+}
+
+.marquee-container::before,
+.marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 450px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #0b0e14, transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #0b0e14, transparent);
 }
 
 .marquee-track {
@@ -617,6 +739,16 @@ section {
 
 .marquee-group img:hover {
     transform: scale(1.1);
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .site-footer {
@@ -655,8 +787,20 @@ section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-email-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.footer-social-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .social-links {
