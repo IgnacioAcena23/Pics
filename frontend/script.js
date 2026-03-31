@@ -148,7 +148,7 @@ if (scrambleEl) {
     // The blur fade-in takes 5.5s, starts fully revealing around 2.5s.
     gsap.to({ p: 0 }, {
         p: 1,
-        duration: 4,
+        duration: 5,
         delay: 0,
         ease: "none",
         onUpdate: function () {
