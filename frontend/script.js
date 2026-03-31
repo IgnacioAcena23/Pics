@@ -1,6 +1,12 @@
 // 1. Registro de Plugins de GSAP (ScrollTrigger para animaciones y ScrollToPlugin para navegación interna)
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Forzar que la página siempre inicie arriba al cargar y desactivar la restauración de scroll automática
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // Usamos el Scroll nativo del navegador para una mejor estabilidad y compatibilidad.
 
 // --- Navegación Activa Inteligente ---
