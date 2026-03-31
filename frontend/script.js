@@ -1,6 +1,12 @@
 // 1. Registro de Plugins de GSAP (ScrollTrigger para animaciones y ScrollToPlugin para navegación interna)
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Forzar que la página siempre inicie arriba al cargar y desactivar la restauración de scroll automática
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // Usamos el Scroll nativo del navegador para una mejor estabilidad y compatibilidad.
 
 // --- Navegación Activa Inteligente ---
@@ -148,7 +154,7 @@ if (scrambleEl) {
     // The blur fade-in takes 5.5s, starts fully revealing around 2.5s.
     gsap.to({ p: 0 }, {
         p: 1,
-        duration: 4,
+        duration: 5,
         delay: 0,
         ease: "none",
         onUpdate: function () {
