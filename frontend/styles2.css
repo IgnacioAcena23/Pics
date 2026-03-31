@@ -126,7 +126,7 @@ section {
     padding-top: 100px;
     text-align: center;
     min-height: 1000px;
-    overflow: hidden;
+    overflow: visible;
     /* Contains the giant orbit ring horizontally */
 }
 
@@ -386,7 +386,7 @@ section {
     max-width: 500px;
     position: relative;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about-image-col img {
@@ -532,7 +532,7 @@ section {
     /* Mathematical exact ratio 4:5 scaling directly up to high res */
     position: relative;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     scroll-snap-align: center;
     /* Snaps gracefully to screen center */
     text-decoration: none;
@@ -641,7 +641,7 @@ section {
 
 .marquee-container {
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     padding: 20px 0;
     /* Prevents logos from getting cut off when scaling */
@@ -799,7 +799,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     background: #0b0e14;
     z-index: 10;
@@ -817,7 +817,7 @@ section {
 
 .bento-item {
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     will-change: transform;
     background: #111;
