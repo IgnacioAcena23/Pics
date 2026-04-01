@@ -266,14 +266,6 @@ nav {
 
 /* Common Media Queries */
 @media (max-width: 768px) {
-    /* Hide scrollbar completely but allow scrolling */
-    html, body {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
-    }
-    html::-webkit-scrollbar, body::-webkit-scrollbar {
-        display: none; /* Chrome/Safari/Opera */
-    }
     nav {
         flex-direction: row;
         justify-content: center;
