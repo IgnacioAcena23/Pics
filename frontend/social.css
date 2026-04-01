@@ -8,7 +8,8 @@
     --accent-gradient: linear-gradient(135deg, #ff0022, #a60016);
 }
 
-html, body {
+html,
+body {
     max-width: 100vw;
     overflow-x: hidden;
 }
@@ -100,7 +101,8 @@ nav {
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1001; /* Keep above mobile menu */
+    z-index: 1001;
+    /* Keep above mobile menu */
 }
 
 .hamburger-btn span {
@@ -157,6 +159,11 @@ nav {
     gap: 8px;
     color: var(--text-secondary);
     transition: color 0.3s;
+}
+
+.location-badge svg {
+    width: 18px;
+    height: 18px;
 }
 
 .footer-right-column {
@@ -259,6 +266,14 @@ nav {
 
 /* Common Media Queries */
 @media (max-width: 768px) {
+    /* Hide scrollbar completely but allow scrolling */
+    html, body {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar {
+        display: none; /* Chrome/Safari/Opera */
+    }
     nav {
         flex-direction: row;
         justify-content: center;
@@ -277,7 +292,8 @@ nav {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; /* Hidden by default */
+        right: -100%;
+        /* Hidden by default */
         height: 100vh;
         width: 100vw;
         background: rgba(11, 14, 20, 0.98);
