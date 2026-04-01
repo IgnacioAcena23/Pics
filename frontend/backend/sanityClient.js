@@ -4,8 +4,8 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url@1.0.2'
 export const client = createClient({
     projectId: 'hzboyqs4', // Tu ID de proyecto extraído de sanity.config.ts
     dataset: 'production',
-    useCdn: true, // true para caché más rápida, false para que cargue los últimos cambios inmediatamente
-    apiVersion: '2024-03-31', // Usa la fecha actual como versión de API
+    useCdn: false, // Desactivamos el CDN (false) para recibir cambios inmediatos al dar a "Publish"
+    apiVersion: '2024-03-31', // Versión estable de la API
 })
 
 const builder = imageUrlBuilder(client)
