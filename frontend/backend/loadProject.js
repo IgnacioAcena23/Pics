@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hashRaw = window.location.hash.substring(1);
         if (hashRaw && !hashRaw.includes('=') && !hashRaw.includes('&')) return hashRaw;
 
+        // Opción D: Salvaguarda "A prueba de fallos" desde la memoria del navegador (por si Render borró la URL)
+        const memSlug = sessionStorage.getItem('activeProjectSlug');
+        if (memSlug) return memSlug;
+
         return null;
     };
 

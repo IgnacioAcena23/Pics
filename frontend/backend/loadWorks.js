@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Crear la tarjeta
             const workCard = document.createElement('a'); // Volvemos al tag <a> para SEO y UX
+            // Dejamos el enlace con ?slug por si el usuario lo abre en nueva pestaña
             workCard.href = `proyecto.html?slug=${slugFinal}`;
             workCard.className = 'work-card dynamic-card';
             workCard.style.animationDelay = `${2.4 + (index * 0.2)}s`;
@@ -37,11 +38,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             `;
 
-            // Diagnóstico de click
+            // Diagnóstico de click y Salvaguarda
             workCard.addEventListener('click', (e) => {
                 if (!slugFinal) {
                     e.preventDefault();
+                    return;
                 }
+                
+                // MODO SEGURO: Guardamos el slug en la memoria del navegador. 
+                // Así sobrevive sin importar lo que el servidor de Render haga con la URL.
+                sessionStorage.setItem('activeProjectSlug', slugFinal);
             });
 
             carouselContainer.appendChild(workCard);
