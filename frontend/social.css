@@ -8,6 +8,18 @@
     --accent-gradient: linear-gradient(135deg, #ff0022, #a60016);
 }
 
+/* Global Scrollbar Reset - Elimination */
+* {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none !important; /* Chrome/Safari/Opera */
+    width: 0 !important;
+    height: 0 !important;
+}
+
 html,
 body {
     max-width: 100vw;
@@ -266,6 +278,7 @@ nav {
 
 /* Common Media Queries */
 @media (max-width: 768px) {
+
     nav {
         flex-direction: row;
         justify-content: center;
