@@ -93,7 +93,7 @@ section {
 }
 
 .hero-content h1 {
-    font-size: clamp(3rem, 10vw, 80px);
+    font-size: clamp(2.2rem, 8vw, 80px); /* Título más pequeño en móviles */
     line-height: 1.1;
     font-weight: 800;
     margin-bottom: 24px;
@@ -103,11 +103,13 @@ section {
 }
 
 .hero-content p {
-    font-size: 22px;
+    font-size: clamp(14px, 4vw, 22px); /* Subtítulo responsive */
     color: var(--text-secondary);
-    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
     font-weight: 300;
+    white-space: nowrap; /* Evita que el texto salte a 2 líneas y cause vibración */
+    overflow: hidden; /* Oculta si se desborda un poco en la animación */
     animation: pBlurFade 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
@@ -477,7 +479,14 @@ section {
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 45px; }
+    .hero-content h1 { 
+        font-size: 32px; /* Título significativamente más pequeño para evitar que se rompa u ocupe toda la pantalla */
+        margin-bottom: 15px; 
+    }
+    .hero-content p {
+        font-size: 14px;
+        white-space: nowrap; /* Garantiza que el scramble-text no baje de línea */
+    }
     .hero-image-sequence-bg { width: 360px; height: 360px; }
     .seq-img-wrapper { width: 100px; height: 100px; }
     
