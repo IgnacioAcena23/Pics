@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Crear la tarjeta
             const workCard = document.createElement('a'); // Volvemos al tag <a> para SEO y UX
-            workCard.href = `proyecto.html#slug=${slugFinal}`;
+            workCard.href = `proyecto.html?slug=${slugFinal}`;
             workCard.className = 'work-card dynamic-card';
             workCard.style.animationDelay = `${2.4 + (index * 0.2)}s`;
 

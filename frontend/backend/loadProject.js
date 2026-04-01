@@ -1,14 +1,26 @@
 import { client, urlFor } from './sanityClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Obtenemos los parametros desde el Hash (#) para evitar filtros del servidor
-    const hash = window.location.hash.substring(1); // Quitamos el '#'
-    const params = new URLSearchParams(hash);
-    const slug = params.get('slug');
+    // Detector universal de Slugs para compatibilidad con Hosting (Render, Vercel, etc)
+    const getSlug = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('slug')) return urlParams.get('slug');
+
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        if (hashParams.get('slug')) return hashParams.get('slug');
+
+        // Por si la URL es proyecto.html#nombre-del-proyecto directamente
+        const hashRaw = window.location.hash.substring(1);
+        if (hashRaw && !hashRaw.includes('=')) return hashRaw;
+
+        return null;
+    };
+
+    const slug = getSlug();
 
     if (!slug) {
-        document.getElementById('project-title').textContent = "Proyecto no encontrado";
-        document.getElementById('project-description').textContent = "Regresa a la sección de Works y selecciona un proyecto válido.";
+        document.getElementById('project-title').textContent = "Proyecto no seleccionado";
+        document.getElementById('project-description').textContent = "Por favor, selecciona un proyecto desde la galería principal.";
         return;
     }
 
@@ -19,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             description,
             gallery
         }`;
-        
+
         const project = await client.fetch(query);
 
         if (!project) {
@@ -40,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (project.gallery && project.gallery.length > 0) {
             project.gallery.forEach((media, index) => {
                 const imageUrl = urlFor(media).width(1200).url(); // Pedimos imagenes de alta calidad
-                
+
                 // Si quieres que las fotos destaquen con estilos distintos, podemos intercalar la clase 'large' 
                 // para la primera imagen o hacerlas todas iguales. Aquí hacemos la primera más grande:
                 const isLarge = index === 0 ? "large" : "";
