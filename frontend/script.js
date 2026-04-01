@@ -245,7 +245,7 @@ if (slider) {
 }
 
 // --- Navegación Inteligente (Scroll Spy) ---
-const sections = document.querySelectorAll("section[id]");
+const sections = document.querySelectorAll("section[id], footer[id]");
 const navItems = document.querySelectorAll(".nav-links a");
 
 window.addEventListener("scroll", () => {
@@ -258,6 +258,11 @@ window.addEventListener("scroll", () => {
             current = section.getAttribute("id");
         }
     });
+
+    // Control especial para el final de página: Si llegamos al final, marcar Contact
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        current = "contact";
+    }
 
     // Asignamos la clase "active" al enlace correspondiente
     navItems.forEach((item) => {
