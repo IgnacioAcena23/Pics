@@ -1,26 +1,36 @@
 import { client, urlFor } from './sanityClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Detector universal de Slugs para compatibilidad con Hosting (Render, Vercel, etc)
+    // Detector universal de Slugs con diagnóstico
     const getSlug = () => {
+        // Opción A: ?slug=nombre
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('slug')) return urlParams.get('slug');
+        const qSlug = urlParams.get('slug');
+        if (qSlug) return qSlug;
 
+        // Opción B: #slug=nombre
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        if (hashParams.get('slug')) return hashParams.get('slug');
+        const hSlug = hashParams.get('slug');
+        if (hSlug) return hSlug;
 
-        // Por si la URL es proyecto.html#nombre-del-proyecto directamente
+        // Opción C: #nombre (limpio)
         const hashRaw = window.location.hash.substring(1);
-        if (hashRaw && !hashRaw.includes('=')) return hashRaw;
+        if (hashRaw && !hashRaw.includes('=') && !hashRaw.includes('&')) return hashRaw;
 
         return null;
     };
 
     const slug = getSlug();
+    
+    // Debug en consola para Render
+    console.log("URL de búsqueda:", window.location.search);
+    console.log("Hash de búsqueda:", window.location.hash);
+    console.log("Slug procesado:", slug);
 
     if (!slug) {
         document.getElementById('project-title').textContent = "Proyecto no seleccionado";
-        document.getElementById('project-description').textContent = "Por favor, selecciona un proyecto desde la galería principal.";
+        document.getElementById('project-description').textContent = "No detectamos un slug en la URL. Verifica que el enlace incluya '?slug=nombre'.";
+        console.warn("No se detectó slug. URL actual:", window.location.href);
         return;
     }
 
