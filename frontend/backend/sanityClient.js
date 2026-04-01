@@ -27,3 +27,15 @@ export async function getEvents() {
     const events = await client.fetch(query)
     return events
 }
+
+// Función para obtener el carrusel del home
+export async function getHomeCarousel() {
+    const query = `*[_type == "homeCarousel"][0]{
+        images[]{
+            "url": asset->url,
+            asset
+        }
+    }`
+    const result = await client.fetch(query)
+    return result?.images || []
+}

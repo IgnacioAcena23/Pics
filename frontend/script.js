@@ -171,29 +171,34 @@ if (scrambleEl) {
         }
     });
 }
-const seqImgs = document.querySelectorAll('.seq-img');
-gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d" });
+window.initHeroAnimations = function() {
+    const seqImgs = document.querySelectorAll('.seq-img');
+    gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d" });
 
-const xTos = [];
-const yTos = [];
+    const xTos = [];
+    const yTos = [];
 
-seqImgs.forEach((img) => {
-    xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
-    yTos.push(gsap.quickTo(img, "rotationX", { ease: "power3", duration: 0.6 }));
+    seqImgs.forEach((img) => {
+        xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
+        yTos.push(gsap.quickTo(img, "rotationX", { ease: "power3", duration: 0.6 }));
 
-    // Hover scale effect
-    img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" }));
-    img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
-});
+        // Hover scale effect
+        img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" }));
+        img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
+    });
 
-window.addEventListener("mousemove", (e) => {
-    const { innerWidth, innerHeight } = window;
-    const xPos = (e.clientX / innerWidth - 0.5) * 2; // -1 to 1
-    const yPos = (e.clientY / innerHeight - 0.5) * 2; // -1 to 1
+    window.addEventListener("mousemove", (e) => {
+        const { innerWidth, innerHeight } = window;
+        const xPos = (e.clientX / innerWidth - 0.5) * 2; // -1 to 1
+        const yPos = (e.clientY / innerHeight - 0.5) * 2; // -1 to 1
 
-    xTos.forEach((xTo) => xTo(xPos * 30));
-    yTos.forEach((yTo) => yTo(-yPos * 30));
-});
+        xTos.forEach((xTo) => xTo(xPos * 30));
+        yTos.forEach((yTo) => yTo(-yPos * 30));
+    });
+};
+
+// Ejecutar inicialmente por si las imágenes están ya (para caso estático/fallback)
+window.initHeroAnimations();
 
 const slider = document.querySelector('.works-carousel');
 let isDown = false;
