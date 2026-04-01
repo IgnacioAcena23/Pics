@@ -6,191 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALALA - Villegas</title>
     <link rel="icon" href="1Recurso.png" type="image/png">
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="social.css">
+    <link rel="stylesheet" href="projects.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 120px;
-        }
-
-        .project-header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .project-header h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .project-header p {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 40px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 15px;
-            border: 2px solid rgba(255, 0, 34, 0.5);
-            padding: 12px 28px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 4px 20px rgba(255, 0, 34, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto 100px;
-            padding: 0 40px;
-        }
-
-        .bento-gallery {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            grid-template-rows: auto auto !important;
-            gap: 16px !important;
-            width: 90vw !important;
-            height: auto !important;
-            padding: 40px 0 !important;
-        }
-
-        /* Perfect gapless masonry mappings for the 7 items */
-        .item-1 {
-            grid-column: span 1;
-            grid-row: 1;
-        }
-
-        .item-2 {
-            grid-column: span 2;
-            grid-row: 1;
-        }
-
-        /* Horizontal center */
-        .item-3 {
-            grid-column: span 1;
-            grid-row: 1;
-        }
-
-        .item-4 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-5 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-6 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .item-7 {
-            grid-column: span 1;
-            grid-row: 2;
-        }
-
-        .bento-item {
-            background: #0b0e14 !important;
-            border: none !important;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
-            display: block !important;
-            border-radius: 16px !important;
-            overflow: hidden !important;
-        }
-
-        .bento-item img {
-            width: 100% !important;
-            height: 100% !important;
-            display: block !important;
-            object-fit: cover !important;
-            border-radius: 0 !important;
-            transition: transform 0.4s ease;
-        }
-
-        .bento-container {
-            height: auto !important;
-            min-height: 100vh !important;
-            overflow: visible !important;
-            padding-top: 40px !important;
-        }
-
-        .bento-container {
-            height: auto !important;
-            min-height: 100vh !important;
-            overflow: visible !important;
-            padding-top: 40px !important;
-        }
-
-        .bento-container {
-            height: auto !important;
-            min-height: 100vh !important;
-            overflow: visible !important;
-            padding-top: 40px !important;
-        }
-
-        .media-item {
-            border-radius: 16px;
-            overflow: hidden;
-            background: #0b0e14;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .media-item img,
-        .media-item video {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .media-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .media-item.large {
-            grid-column: span 2;
-        }
-
-        @media (max-width: 768px) {
-            .media-item.large {
-                grid-column: span 1;
-            }
-        }
-    </style>
+</head>
 </head>
 
 <body>
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="../examplePics/1Recurso 2.png" alt="Villegas Logo">
+                <img src="examplePics/1Recurso 2.png" alt="Villegas Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#works" class="active">Works</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -209,38 +41,104 @@
         <!-- Galería de Medios: Puedes agregar cuantos "media-item" quieras duplicando el bloque -->
         <section class="media-grid">
             <div class="media-item">
-                <img src="../examplePics/_DSC7547.jpg" alt="Foto 1">
+                <img src="examplePics/_DSC7547.jpg" alt="Foto 1">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7550.jpg" alt="Foto 2">
+                <img src="examplePics/_DSC7550.jpg" alt="Foto 2">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7553.jpg" alt="Foto 3">
+                <img src="examplePics/_DSC7553.jpg" alt="Foto 3">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7559.jpg" alt="Foto 4">
+                <img src="examplePics/_DSC7559.jpg" alt="Foto 4">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7560.jpg" alt="Foto 5">
+                <img src="examplePics/_DSC7560.jpg" alt="Foto 5">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7561.jpg" alt="Foto 6">
+                <img src="examplePics/_DSC7561.jpg" alt="Foto 6">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7573.jpg" alt="Foto 7">
+                <img src="examplePics/_DSC7573.jpg" alt="Foto 7">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7583.jpg" alt="Foto 8">
+                <img src="examplePics/_DSC7583.jpg" alt="Foto 8">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7603.jpg" alt="Foto 9">
+                <img src="examplePics/_DSC7603.jpg" alt="Foto 9">
             </div>
             <div class="media-item">
-                <img src="../examplePics/_DSC7607.jpg" alt="Foto 10">
+                <img src="examplePics/_DSC7607.jpg" alt="Foto 10">
             </div>
         </section>
     </main>
-
-
+    <footer id="contact" class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="examplePics/1Recurso 2.png" alt="Villegas Logo" style="height: 24px; object-fit: contain;">
+                <div class="location-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <span>Venezuela</span>
+                </div>
+            </div>
+            <p id="copy-content">&copy; 2023 Villegas. Todos los derechos reservados.</p>
+            <div class="footer-right-column">
+                <h4 class="footer-title">Contact Us</h4>
+                <div class="footer-email-section">
+                    <a href="mailto:ftsaevc@gmail.com?subject=Propuesta%20de%20Trabajo%20-%20Villegas%20Vision&body=Hola%2C%20he%20visto%20tu%20trabajo%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto."
+                        class="email-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>ftsaevc@gmail.com</span>
+                    </a>
+                </div>
+                <div class="footer-social-section">
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram" class="social-instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
+                            rel="noopener noreferrer" aria-label="TikTok" class="social-tiktok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                            </svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube" class="social-youtube">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.18 1 12 1 12s0 3.82.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.82 23 12 23 12s0-3.82-.46-5.58z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
 
 </html>
