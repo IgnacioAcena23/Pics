@@ -233,15 +233,13 @@ if (slider) {
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    // Evitar que el clic abra la página si el usuario simplemente estaba arrastrando la galería
-    const cards = document.querySelectorAll('.work-card');
-    cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (isDragging) {
-                e.preventDefault();
-            }
-        });
-    });
+    // Evitar que el clic abra la página si el usuario simplemente estaba arrastrando la galería (Delegación)
+    slider.addEventListener('click', (e) => {
+        if (isDragging) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, true); // El 'true' (fase de captura) asegura que el bloqueo ocurra antes que la navegación
 }
 
 // --- Navegación Inteligente (Scroll Spy) ---
