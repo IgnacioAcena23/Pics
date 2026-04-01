@@ -9,6 +9,17 @@ window.scrollTo(0, 0);
 
 // Usamos el Scroll nativo del navegador para una mejor estabilidad y compatibilidad.
 
+// --- Hamburger Menu Logic ---
+const hamburgerBtn = document.querySelector('.hamburger-btn');
+const navLinksContainer = document.querySelector('.nav-links');
+
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('is-active');
+        navLinksContainer.classList.toggle('is-open');
+    });
+}
+
 // --- Navegación Activa Inteligente ---
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 const logoLink = document.querySelector('a.logo[href^="#"]');
@@ -27,6 +38,12 @@ function updateActiveLink(targetId) {
 
         // Actualizar active inmediatamente al hacer clic
         updateActiveLink(targetId);
+
+        // Cerrar menú móvil al hacer clic (si está abierto)
+        if (hamburgerBtn && hamburgerBtn.classList.contains('is-active')) {
+            hamburgerBtn.classList.remove('is-active');
+            navLinksContainer.classList.remove('is-open');
+        }
 
         gsap.to(window, {
             duration: 1.5,

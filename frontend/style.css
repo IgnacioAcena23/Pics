@@ -500,4 +500,10 @@ section {
     .item-5 { grid-column: span 1; grid-row: span 1; }
     .item-6 { grid-column: span 2; grid-row: span 1; }
     .item-7 { display: none; }
+
+    /* Works Carousel Mobile Optimization */
+    .works-carousel { gap: 20px; padding: 20px 20px 80px 20px; }
+    .work-card { width: 75vw; max-width: 300px; }
+    .work-info { padding: 30px 20px; }
+    .work-info h3 { font-size: 24px; }
 }
