@@ -289,7 +289,7 @@ nav {
     .hamburger-btn {
         display: flex;
         position: absolute;
-        right: 40px;
+        left: 20px;
         top: 50%;
         transform: translateY(-50%);
     }
@@ -340,12 +340,46 @@ nav {
         flex-direction: column;
         text-align: center;
         gap: 30px;
+        position: relative;
     }
 
-    .footer-logo,
-    .social-links {
+    /* Uso de 'display: contents' para aplanar la estructura de cara al flex layout padre */
+    .footer-logo, .footer-right-column {
+        display: contents;
+    }
+
+    /* Ordenación exacta a petición */
+    .footer-logo img {
+        order: 1;
+        height: 45px;
+        margin: 0 auto 10px;
+    }
+
+    .footer-title {
+        order: 2;
+    }
+
+    .footer-email-section {
+        order: 3;
+    }
+
+    .footer-social-section {
+        order: 4;
+        margin-bottom: 10px;
+    }
+
+    .location-badge {
+        order: 5;
         justify-content: center;
-        align-items: center;
         width: 100%;
     }
-}
+
+    #copy-content {
+        order: 6;
+    }
+
+    .social-links {
+        justify-content: center;
+        width: 100%;
+    }
+}

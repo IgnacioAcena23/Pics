@@ -2,13 +2,13 @@ import { getEvents, urlFor } from './sanityClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const carouselContainer = document.querySelector('.works-carousel');
-    
+
     // Si no se encuentra el contenedor, detenemos el script
     if (!carouselContainer) return;
 
     try {
         const works = await getEvents();
-        
+
         if (works.length === 0) {
             console.log("No hay proyectos en Sanity.");
             return;
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const workCard = document.createElement('a'); // Volvemos al tag <a> para SEO y UX
             workCard.href = `proyecto.html#slug=${slugFinal}`;
             workCard.className = 'work-card dynamic-card';
-            workCard.style.animationDelay = `${3.8 + (index * 0.2)}s`;
-            
+            workCard.style.animationDelay = `${2.4 + (index * 0.2)}s`;
+
             workCard.innerHTML = `
                 <img src="${imageUrl}" alt="${nombre}" />
                 <div class="work-info">
