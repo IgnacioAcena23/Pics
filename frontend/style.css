@@ -374,19 +374,19 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     font-size: 18px;
-    color: var(--accent) !important;
+    color: #ffffff !important;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     user-select: none;
-    box-shadow: 0 4px 15px rgba(255, 0, 34, 0.1), 0 0 10px rgba(255, 0, 34, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .scroll-indicator span:hover {
-    background: var(--accent);
+    background: rgba(255, 255, 255, 0.12);
     color: #ffffff !important;
     transform: scale(1.15) translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 0, 34, 0.4);
-    border-color: transparent;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .scroll-indicator span:active {
@@ -804,4 +804,15 @@ section {
     .work-info h3 {
         font-size: 24px;
     }
-}
+
+    /* Reducir desvanecido de marcas en móvil para ver más a la vez */
+    .marquee-container::before,
+    .marquee-container::after {
+        width: 120px;
+    }
+
+    .marquee-group {
+        gap: 60px;
+        padding-right: 60px;
+    }
+}

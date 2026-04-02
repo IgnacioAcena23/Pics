@@ -95,8 +95,7 @@ gsap.to(".hero-content h1", {
 // --- B) Animaciones de Títulos de Sección ---
 const sectionTitles = [
     { selector: "#about .about-title", trigger: "#about" },
-    { selector: "#works .works-title", trigger: "#works" },
-    { selector: "#contact .footer-title", trigger: "#contact" }
+    { selector: "#works .works-title", trigger: "#works" }
 ];
 
 sectionTitles.forEach(st => {
