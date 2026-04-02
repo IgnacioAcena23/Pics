@@ -363,11 +363,40 @@ section {
     gap: 15px;
 }
 
+.scroll-indicator span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    font-size: 18px;
+    color: var(--accent) !important;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(255, 0, 34, 0.1), 0 0 10px rgba(255, 0, 34, 0.05);
+}
+
+.scroll-indicator span:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 0, 34, 0.4);
+    border-color: transparent;
+}
+
+.scroll-indicator span:active {
+    transform: scale(0.95);
+}
+
 .works-carousel {
     display: flex;
     gap: 40px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     padding: 20px 40px 100px 40px;
     cursor: grab;
     -ms-overflow-style: none;
@@ -376,7 +405,10 @@ section {
 
 .works-carousel.active {
     cursor: grabbing;
-    scroll-snap-type: none;
+}
+
+.works-carousel.active {
+    cursor: grabbing;
 }
 
 .works-carousel::-webkit-scrollbar {
@@ -390,7 +422,6 @@ section {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    scroll-snap-align: center;
     text-decoration: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.4s ease, box-shadow 0.4s ease;

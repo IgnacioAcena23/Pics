@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" style="scroll-behavior: smooth;">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -112,7 +112,19 @@
                     style="font-size: clamp(2.3rem, 5.5vw, 4.2rem); margin-bottom: 0px; padding: 10px 15px 10px 0; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; transform-origin: left center;">
                     Works</h2>
                 <div class="scroll-indicator">
-                    <span style="color: var(--accent);">&#8592;</span> Desliza <span>&#8594;</span>
+                    <span class="scroll-prev-btn" style="cursor: pointer;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </span> 
+                    Desliza 
+                    <span class="scroll-next-btn" style="cursor: pointer;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </span>
                 </div>
             </div>
 
@@ -205,6 +217,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
