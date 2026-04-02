@@ -183,7 +183,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
 }
 
 .footer-title {
@@ -339,7 +339,7 @@ nav {
     .footer-content {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
+        gap: 15px;
         position: relative;
     }
 
