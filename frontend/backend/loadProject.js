@@ -40,10 +40,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Pedimos a Sanity todos los datos del proyecto cuyo 'slug' coincida con la URL
+        // Obtenemos también metadatos de las imágenes para saber su orientación
         const query = `*[_type == "eventType" && slug.current == "${slug}"][0]{
             name,
             description,
-            gallery
+            gallery[]{
+                asset->{
+                    _id,
+                    url,
+                    metadata {
+                        dimensions {
+                            width,
+                            height,
+                            aspectRatio
+                        }
+                    }
+                }
+            }
         }`;
 
         const project = await client.fetch(query);
@@ -69,39 +82,82 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         metaDesc.setAttribute('content', projectDesc);
 
-        // Actualizar Open Graph para redes sociales
-        let ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) ogTitle.setAttribute('content', `${projectName} - Villegas`);
-
         document.getElementById('project-title').innerHTML = projectName;
         document.getElementById('project-description').innerHTML = project.description || "Sin descripción.";
 
-        // 2. Inyectamos la Galería de Fotos/Videos
+        // 2. Inyectamos la Galería de Fotos
         const galleryContainer = document.getElementById('project-gallery');
-        galleryContainer.innerHTML = ''; // Limpiamos la galería
+        galleryContainer.innerHTML = ''; 
 
         if (project.gallery && project.gallery.length > 0) {
-            project.gallery.forEach((media, index) => {
-                const imageUrl = urlFor(media).width(1200).url(); // Pedimos imagenes de alta calidad
+            project.gallery.forEach((imageObj, index) => {
+                const asset = imageObj.asset;
+                const imageUrl = asset ? urlFor(asset).width(1600).url() : '';
+                const dimensions = asset?.metadata?.dimensions;
+                
+                // Detectamos orientación
+                let orientationClass = "horizontal";
+                if (dimensions && dimensions.height > dimensions.width) {
+                    orientationClass = "vertical";
+                }
 
-                // Si quieres que las fotos destaquen con estilos distintos, podemos intercalar la clase 'large' 
-                // para la primera imagen o hacerlas todas iguales. Aquí hacemos la primera más grande:
-                const isLarge = index === 0 ? "large" : "";
+                // La primera imagen siempre es destacada (large) si no es vertical
+                const isLarge = (index === 0 && orientationClass !== "vertical") ? "large" : "";
 
                 const mediaHTML = `
-                    <div class="media-item ${isLarge}">
-                        <img src="${imageUrl}" alt="Foto de la galería de ${project.name}" />
+                    <div class="media-item ${isLarge} ${orientationClass}" data-full="${imageUrl}">
+                        <img src="${imageUrl}" alt="Foto ${index + 1} - ${project.name}" loading="lazy" />
+                        <div class="zoom-overlay">
+                            <span>EXPLORE</span>
+                        </div>
                     </div>
                 `;
                 galleryContainer.insertAdjacentHTML('beforeend', mediaHTML);
             });
+
+            // --- Implementación del Lightbox (Zoom) ---
+            initLightbox();
         } else {
-            galleryContainer.innerHTML = '<p style="text-align:center; width:100%; color: var(--text-secondary);">No hay fotos disponibles en la galería de Sanity.</p>';
+            galleryContainer.innerHTML = '<p style="text-align:center; width:100%; color: var(--text-secondary);">No hay fotos disponibles.</p>';
         }
 
     } catch (error) {
         console.error("Error cargando el proyecto:", error);
-        document.getElementById('project-title').textContent = "Error de conexión";
-        document.getElementById('project-description').textContent = "Hubo un problema comunicándose con Sanity.";
     }
 });
+
+function initLightbox() {
+    // Crear el contenedor del Lightbox si no existe
+    let lightbox = document.getElementById('lightbox');
+    if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.id = 'lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-overlay"></div>
+            <div class="lightbox-content">
+                <img src="" alt="Zoomed view" id="lightbox-img">
+                <button class="lightbox-close">&times;</button>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+        
+        const overlay = lightbox.querySelector('.lightbox-overlay');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+        
+        const closeLightbox = () => lightbox.classList.remove('active');
+        overlay.onclick = closeLightbox;
+        closeBtn.onclick = closeLightbox;
+    }
+
+    const items = document.querySelectorAll('.media-item');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const fullUrl = item.getAttribute('data-full');
+            lightboxImg.src = fullUrl;
+            lightbox.classList.add('active');
+        });
+    });
+}
+
