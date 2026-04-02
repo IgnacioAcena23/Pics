@@ -2,37 +2,40 @@ import { getBrandsMarquee, urlFor } from './sanityClient.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const trackContainer = document.getElementById('dynamic-brands-track');
-    
+
     if (!trackContainer) return;
 
     try {
         const logos = await getBrandsMarquee();
-        
+
         if (logos.length === 0) {
             console.log("No hay logos de marcas en Sanity.");
-            // Si quieres puedes ocultar la sección entera aquí:
-            // document.getElementById('brands').style.display = 'none';
             return;
         }
 
-        // Limpiar el contenedor (por si acaso quedaba algo estático)
+        // 1. Limpiar el contenedor
         trackContainer.innerHTML = '';
 
-        // Para lograr el efecto de "loop infinito", necesitamos duplicar las imágenes
-        // Crearemos un div de grupo que contenga todas las fotos, y lo repetiremos 2 veces.
-        
-        // Creamos el HTML del grupo base con todos los logos
+        // 2. Crear el grupo de logos
         let groupHTML = '<div class="marquee-group">';
         logos.forEach((imgData, index) => {
             if (imgData.asset) {
-                const imageUrl = urlFor(imgData.asset).width(400).url(); // 400px es suficiente para un logo
+                // Usamos 400px para calidad, pero el CSS controlará el tamaño visual
+                const imageUrl = urlFor(imgData.asset).width(400).url();
                 groupHTML += `<img src="${imageUrl}" alt="Marca ${index + 1}">`;
             }
         });
         groupHTML += '</div>';
 
-        // Inyectamos el grupo dos veces exactas en el track para que la animación CSS "marqueeScroll" fluya sin fin
+        // 3. Inyectamos el contenido duplicado para el loop infinito
         trackContainer.innerHTML = groupHTML + groupHTML;
+
+        // --- EL CAMBIO CLAVE PARA EL BUG DE SAFARI ---
+        // Esperamos un momento a que el navegador "digiera" el nuevo HTML
+        // y luego añadimos la clase que dispara la animación.
+        setTimeout(() => {
+            trackContainer.classList.add('is-animating');
+        }, 100);
 
     } catch (error) {
         console.error("Error cargando los logos de marcas: ", error);

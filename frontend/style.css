@@ -563,11 +563,16 @@ section {
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: marqueeScroll 25s linear infinite;
-    -webkit-animation: marqueeScroll 25s linear infinite;
+    /* Quitamos la animación de aquí para que no arranque en vacío */
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+/* Crea una clase nueva que sí tenga la animación */
+.is-animating {
+    -webkit-animation: marqueeScroll 25s linear infinite;
+    animation: marqueeScroll 25s linear infinite;
 }
 
 .marquee-group {
