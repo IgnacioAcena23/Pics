@@ -336,6 +336,10 @@ nav {
         text-align: center;
     }
 
+    .site-footer {
+        padding: 30px 20px;
+    }
+
     .footer-content {
         flex-direction: column;
         text-align: center;

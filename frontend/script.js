@@ -173,10 +173,17 @@ if (scrambleEl) {
 }
 window.initHeroAnimations = function() {
     const seqImgs = document.querySelectorAll('.seq-img');
-    gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d" });
+    
+    // Forzado de ejes a cero. Previene que el navegador asuma rotaciones heredadas o fantasmas al inyectar imágenes dinámicas sin tamaño inicial.
+    gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d", rotationX: 0, rotationY: 0, rotationZ: 0 });
 
     const xTos = [];
     const yTos = [];
+
+    // Limpiar viejos listeners si la galería se recarga dinámicamente
+    if (window._heroMouseMoveRef) {
+        window.removeEventListener("mousemove", window._heroMouseMoveRef);
+    }
 
     seqImgs.forEach((img) => {
         xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
@@ -187,14 +194,16 @@ window.initHeroAnimations = function() {
         img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
     });
 
-    window.addEventListener("mousemove", (e) => {
+    window._heroMouseMoveRef = (e) => {
         const { innerWidth, innerHeight } = window;
         const xPos = (e.clientX / innerWidth - 0.5) * 2; // -1 to 1
         const yPos = (e.clientY / innerHeight - 0.5) * 2; // -1 to 1
 
         xTos.forEach((xTo) => xTo(xPos * 30));
         yTos.forEach((yTo) => yTo(-yPos * 30));
-    });
+    };
+
+    window.addEventListener("mousemove", window._heroMouseMoveRef);
 };
 
 // Ejecutar inicialmente por si las imágenes están ya (para caso estático/fallback)
