@@ -1,7 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villegas</title>
+    <meta name="description"
+        content="Armando Villegas - Director Cinematográfico con más de 3 años de experiencia en cinematografía, montaje narrativo y colorimetría avanzada.">
+    <meta name="keywords"
+        content="Armando Villegas, Director Cinematográfico, Cinematografía, Montaje Narrativo, Colorimetría, Portfolio, Producción Audiovisual">
+    <meta name="author" content="Armando Villegas">
+    <link rel="icon" href="examplePics/1Recurso.png" type="image/png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pics-66pg.onrender.com/">
+    <meta property="og:title" content="Armando Villegas | Director Cinematográfico">
+    <meta property="og:description"
+        content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
+    <meta property="og:image" content="https://pics-66pg.onrender.com/examplePics/_DSC0346.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pics-66pg.onrender.com/">
+    <meta property="twitter:title" content="Armando Villegas | Director Cinematográfico">
+    <meta property="twitter:description"
+        content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
+    <meta property="twitter:image" content="https://pics-66pg.onrender.com/examplePics/_DSC0346.jpg">
+
+    <title>Armando Villegas | Director Cinematográfico</title>
     <link rel="stylesheet" href="social.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -13,6 +39,11 @@
             <a href="#home" class="logo">
                 <img src="examplePics/1Recurso 2.png" alt="Villegas Logo">
             </a>
+            <button class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -81,81 +112,37 @@
                     style="font-size: clamp(2.3rem, 5.5vw, 4.2rem); margin-bottom: 0px; padding: 10px 15px 10px 0; background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; transform-origin: left center;">
                     Works</h2>
                 <div class="scroll-indicator">
-                    <span style="color: var(--accent);">&#8592;</span> Desliza <span>&#8594;</span>
+                    <span class="scroll-prev-btn" style="cursor: pointer;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </span> 
+                    <span class="scroll-next-btn" style="cursor: pointer;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </span>
                 </div>
             </div>
 
             <div class="works-carousel">
-                <!-- Proyecto 1 -->
-                <a href="proyecto1.html" class="work-card">
-                    <img src="examplePics/_DSC8275.jpg" alt="DJ Set Live">
-                    <div class="work-info">
-                        <h3>Federacion Venezolana de Tiro</h3>
-                        <p>Photoshoot</p>
-                    </div>
-                </a>
-
-                <!-- Proyecto 2 -->
-                <a href="proyecto2.html" class="work-card">
-                    <img src="examplePics/_DSC0346.jpg" alt="Producción">
-                    <div class="work-info">
-                        <h3>Od. Pierina Villegas</h3>
-                        <p>Photoshoot</p>
-                    </div>
-                </a>
-
-                <!-- Proyecto 3 -->
-                <a href="proyecto3.html" class="work-card">
-                    <img src="examplePics/_DSC7553.jpg" alt="Gira Nacional">
-                    <div class="work-info">
-                        <h3>MALALA</h3>
-                        <p>Photoshoot</p>
-                    </div>
-                </a>
-
-                <!-- Proyecto 4 -->
-                <a href="proyecto4.html" class="work-card">
-                    <img src="examplePics/_DSC6001.jpg" alt="Remix Oficial">
-                    <div class="work-info">
-                        <h3>La Parada Junior</h3>
-                        <p>Guataparo Country Club</p>
-                    </div>
-                </a>
-
-                <!-- Proyecto 5 -->
-                <a href="proyecto5.html" class="work-card">
-                    <img src="examplePics/_DSC3921.jpg" alt="Lanzamiento">
-                    <div class="work-info">
-                        <h3>XV Yess</h3>
-                        <p>Photoshoot</p>
-                    </div>
-                </a>
+                <!-- Placeholder de carga visual -->
+                <div class="initial-loading"
+                    style="text-align: center; width: 100%; color: var(--text-secondary); opacity: 0.5;">
+                    <p>Cargando proyectos desde Sanity...</p>
+                </div>
             </div>
         </section>
-
         <!-- Marcas / Partners -->
         <section id="brands" class="brands-marquee">
             <h3
                 style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7;">
                 Brands enveloped by my vision.</h3>
             <div class="marquee-container">
-                <div class="marquee-track">
-                    <!-- Grupo 1 -->
-                    <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
-                    </div>
-                    <!-- Grupo 2 (Duplicado para lograr un loop continuo y sin cortes) -->
-                    <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
-                    </div>
+                <div class="marquee-track" id="dynamic-brands-track">
+                    <!-- Los grupos de marcas se inyectarán aquí dinámicamente desde Sanity -->
                 </div>
             </div>
         </section>
@@ -229,8 +216,14 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="nav.js"></script>
     <script src="script.js"></script>
+    <!-- Módulo de Sanity para Cargar el Carrusel y Works -->
+    <script type="module" src="backend/loadBrands.js"></script>
+    <script type="module" src="backend/loadHomeCarousel.js"></script>
+    <script type="module" src="backend/loadWorks.js"></script>
 </body>
