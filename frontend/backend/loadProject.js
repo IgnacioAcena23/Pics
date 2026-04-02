@@ -54,9 +54,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // 1. Inyectamos el Título y la Descripción
-        document.title = `${project.name} - Villegas`;
-        document.getElementById('project-title').innerHTML = project.name;
+        // 1. Inyectamos el Título y la Descripción dinámicos
+        const projectName = project.name || "Proyecto";
+        const projectDesc = (project.description || "Portfolio de Armando Villegas.").substring(0, 160);
+        
+        document.title = `${projectName} - Villegas`;
+        
+        // Actualizar Meta Description dinámicamente para SEO
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', projectDesc);
+
+        // Actualizar Open Graph para redes sociales
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', `${projectName} - Villegas`);
+
+        document.getElementById('project-title').innerHTML = projectName;
         document.getElementById('project-description').innerHTML = project.description || "Sin descripción.";
 
         // 2. Inyectamos la Galería de Fotos/Videos
