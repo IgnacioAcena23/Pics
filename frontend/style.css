@@ -93,26 +93,24 @@ section {
     }
 }
 
+/* 1. Bloque para navegadores modernos (Chrome, Edge, Firefox) */
 @keyframes marqueeScroll {
     0% {
         transform: translate3d(-50%, 0, 0);
-        -webkit-transform: translate3d(-50%, 0, 0);
     }
 
     100% {
         transform: translate3d(0, 0, 0);
-        -webkit-transform: translate3d(0, 0, 0);
     }
 }
 
+/* 2. Bloque exclusivo para motores WebKit antiguos (Versiones viejas de Safari/iOS) */
 @-webkit-keyframes marqueeScroll {
     0% {
-        transform: translate3d(-50%, 0, 0);
         -webkit-transform: translate3d(-50%, 0, 0);
     }
 
     100% {
-        transform: translate3d(0, 0, 0);
         -webkit-transform: translate3d(0, 0, 0);
     }
 }
@@ -536,6 +534,9 @@ section {
     overflow: hidden;
     position: relative;
     padding: 20px 0;
+    /* FORZAMOS GPU EN SAFARI AL CONTENEDOR PADRE */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .marquee-container::before,
@@ -562,11 +563,16 @@ section {
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: marqueeScroll 25s linear infinite;
-    -webkit-animation: marqueeScroll 25s linear infinite;
+    /* Quitamos la animación de aquí para que no arranque en vacío */
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+/* Crea una clase nueva que sí tenga la animación */
+.is-animating {
+    -webkit-animation: marqueeScroll 25s linear infinite;
+    animation: marqueeScroll 25s linear infinite;
 }
 
 .marquee-group {
@@ -582,10 +588,19 @@ section {
     max-width: 160px;
     object-fit: contain;
     transition: all 0.4s ease;
+
+    /* 1. CRUCIAL: Evita que Safari colapse el ancho a 0 */
+    flex-shrink: 0;
+
+    /* 2. CRUCIAL: Aceleración por hardware para que no desaparezcan */
+    -webkit-transform: translateZ(0) scale(1);
+    transform: translateZ(0) scale(1);
+    will-change: transform;
 }
 
 .marquee-group img:hover {
-    transform: scale(1.1);
+    -webkit-transform: translateZ(0) scale(1.1);
+    transform: translateZ(0) scale(1.1);
 }
 
 /* Bento Gallery */
