@@ -197,6 +197,8 @@ section {
     border-radius: 20px;
     animation: counterRotate 35s linear infinite;
     pointer-events: none;
+    transform: rotate(0deg);
+    /* Reset explícito */
 }
 
 .seq-img {
