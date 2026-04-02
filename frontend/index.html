@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Armando Villegas - Director Cinematográfico con más de 3 años de experiencia en cinematografía, montaje narrativo y colorimetría avanzada.">
-    <meta name="keywords" content="Armando Villegas, Director Cinematográfico, Cinematografía, Montaje Narrativo, Colorimetría, Portfolio, Producción Audiovisual">
+    <meta name="description"
+        content="Armando Villegas - Director Cinematográfico con más de 3 años de experiencia en cinematografía, montaje narrativo y colorimetría avanzada.">
+    <meta name="keywords"
+        content="Armando Villegas, Director Cinematográfico, Cinematografía, Montaje Narrativo, Colorimetría, Portfolio, Producción Audiovisual">
     <meta name="author" content="Armando Villegas">
-    <link rel="icon" href="examplePics/1Recurso 2.png" type="image/png">
-    
+    <link rel="icon" href="examplePics/1Recurso.png" type="image/png">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pics-66pg.onrender.com/">
     <meta property="og:title" content="Armando Villegas | Director Cinematográfico">
-    <meta property="og:description" content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
+    <meta property="og:description"
+        content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
     <meta property="og:image" content="https://pics-66pg.onrender.com/examplePics/_DSC0346.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pics-66pg.onrender.com/">
     <meta property="twitter:title" content="Armando Villegas | Director Cinematográfico">
-    <meta property="twitter:description" content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
+    <meta property="twitter:description"
+        content="Explora el portfolio visual de Armando Villegas, especializado en dirección cinematográfica y post-producción avanzada.">
     <meta property="twitter:image" content="https://pics-66pg.onrender.com/examplePics/_DSC0346.jpg">
 
     <title>Armando Villegas | Director Cinematográfico</title>
@@ -113,7 +118,8 @@
 
             <div class="works-carousel">
                 <!-- Placeholder de carga visual -->
-                <div class="initial-loading" style="text-align: center; width: 100%; color: var(--text-secondary); opacity: 0.5;">
+                <div class="initial-loading"
+                    style="text-align: center; width: 100%; color: var(--text-secondary); opacity: 0.5;">
                     <p>Cargando proyectos desde Sanity...</p>
                 </div>
             </div>
@@ -124,23 +130,8 @@
                 style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7;">
                 Brands enveloped by my vision.</h3>
             <div class="marquee-container">
-                <div class="marquee-track">
-                    <!-- Grupo 1 -->
-                    <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
-                    </div>
-                    <!-- Grupo 2 (Duplicado para lograr un loop continuo y sin cortes) -->
-                    <div class="marquee-group">
-                        <img src="examplePics/logo_Federación venezolana de tiro-01.png" alt="Marca 1">
-                        <img src="examplePics/LOGO_Mesa de trabajo 1.png" alt="Marca 2">
-                        <img src="examplePics/logo-blanco.png" alt="Marca 3">
-                        <img src="examplePics/Grupo 5.png" alt="Marca 4">
-                        <img src="examplePics/logo ASOTILA.jpg" alt="Marca 5">
-                    </div>
+                <div class="marquee-track" id="dynamic-brands-track">
+                    <!-- Los grupos de marcas se inyectarán aquí dinámicamente desde Sanity -->
                 </div>
             </div>
         </section>
@@ -220,6 +211,7 @@
     <script src="nav.js"></script>
     <script src="script.js"></script>
     <!-- Módulo de Sanity para Cargar el Carrusel y Works -->
+    <script type="module" src="backend/loadBrands.js"></script>
     <script type="module" src="backend/loadHomeCarousel.js"></script>
     <script type="module" src="backend/loadWorks.js"></script>
 </body>

@@ -39,3 +39,15 @@ export async function getHomeCarousel() {
     const result = await client.fetch(query)
     return result?.images || []
 }
+
+// Función para obtener los logos de la franja infinita de Marcas
+export async function getBrandsMarquee() {
+    const query = `*[_type == "brandsMarquee"][0]{
+        logos[]{
+            "url": asset->url,
+            asset
+        }
+    }`
+    const result = await client.fetch(query)
+    return result?.logos || []
+}
