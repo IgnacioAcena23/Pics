@@ -196,6 +196,7 @@ section {
     animation: counterRotate 35s linear infinite;
     pointer-events: none;
     transform: rotate(0deg);
+    background: #000;
 }
 
 .seq-img {
@@ -206,6 +207,12 @@ section {
     box-shadow: 0 15px 40px rgba(255, 0, 34, 0.4);
     border: 2px solid transparent;
     pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.seq-img.seq-img-loaded {
+    opacity: 1;
 }
 
 .seq-img-wrapper:nth-child(1) {
