@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargando Proyecto - Villegas</title>
-    <link rel="icon" href="1Recurso.png" type="image/png">
-    <link rel="stylesheet" href="social.css">
-    <link rel="stylesheet" href="projects.css">
+    <link rel="icon" href="../media/1Recurso.png" type="image/png">
+    <link rel="stylesheet" href="../frontend/social.css">
+    <link rel="stylesheet" href="../frontend/projects.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
@@ -15,7 +15,7 @@
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="examplePics/1Recurso 2.png" alt="Villegas Logo">
+                <img src="../media/1Recurso 2.png" alt="Villegas Logo">
             </a>
             <button class="hamburger-btn" aria-label="Menu" aria-expanded="false">
                 <span></span>
@@ -33,22 +33,18 @@
 
     <main>
         <section class="project-header" id="project-header">
-            <!-- El Título y Descripción se cargarán aquí -->
             <h1 id="project-title">Cargando...</h1>
             <p id="project-description">Obteniendo datos del proyecto desde Sanity.</p>
             <a href="index.html#works" class="back-link">&#8592; Back to Works</a>
         </section>
-
-        <!-- Galería de Medios dinámica -->
         <section class="media-grid" id="project-gallery">
-            <!-- Las fotos se inyectaran aqui mediante JS -->
         </section>
     </main>
 
     <footer id="contact" class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="examplePics/1Recurso 2.png" alt="Villegas Logo" style="height: 24px; object-fit: contain;">
+                <img src="../media/1Recurso 2.png" alt="Villegas Logo" style="height: 24px; object-fit: contain;">
                 <div class="location-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -78,7 +74,6 @@
                 </div>
                 <div class="footer-social-section">
                     <div class="social-links">
-                        <!-- Instagram -->
                         <a href="https://www.instagram.com/villegapics/" target="_blank" rel="noopener noreferrer"
                             aria-label="Instagram" class="social-instagram">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -88,7 +83,6 @@
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                             </svg>
                         </a>
-                        <!-- TikTok -->
                         <a href="https://www.tiktok.com/@villegapics?_r=1&_t=ZS-94xRsrNAGHg" target="_blank"
                             rel="noopener noreferrer" aria-label="TikTok" class="social-tiktok">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -96,7 +90,6 @@
                                 <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
                             </svg>
                         </a>
-                        <!-- YouTube -->
                         <a href="https://www.youtube.com/@Villegas.c" target="_blank" rel="noopener noreferrer"
                             aria-label="YouTube" class="social-youtube">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -112,8 +105,8 @@
             </div>
         </div>
     </footer>
-    <script src="nav.js"></script>
-    <script type="module" src="backend/loadProject.js"></script>
+    <script src="../frontend/nav.js"></script>
+    <script type="module" src="../backend/loadProject.js"></script>
 </body>
 
 </html>

@@ -13,7 +13,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- Project Hub Styles --- */
 .project-header {
     max-width: 1200px;
     margin: 0 auto;
@@ -56,10 +55,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* Common Media Elements */
 .media-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Base de 2 columnas para permitir parejas */
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     max-width: 1400px;
     margin: 40px auto 100px;
@@ -82,17 +80,15 @@ body {
     display: block;
 }
 
-/* Clasificación por Orientación */
 .media-item.horizontal,
 .media-item.large {
-    grid-column: span 2; /* Las horizontales ocupan todo el ancho (2 columnas) */
+    grid-column: span 2;
 }
 
 .media-item.vertical {
-    grid-column: span 1; /* Las verticales ocupan solo 1 columna para ir en hileras */
+    grid-column: span 1;
 }
 
-/* Capa de Zoom (Desktop) */
 .zoom-overlay {
     position: absolute;
     top: 0;
@@ -123,7 +119,6 @@ body {
     opacity: 1;
 }
 
-/* --- LIGHTBOX (ZOOM FULLSCREEN) --- */
 #lightbox {
     position: fixed;
     top: 0;
@@ -214,27 +209,44 @@ body {
     }
 }
 
-
-/* Desktop Styles */
 @media (min-width: 992px) {
     .media-grid {
         grid-template-columns: repeat(12, 1fr);
         gap: 20px;
         padding: 0 100px;
     }
-    .media-item.vertical { grid-column: span 4; }
-    .media-item.horizontal { grid-column: span 8; }
-    .media-item.large { grid-column: span 12; }
+
+    .media-item.vertical {
+        grid-column: span 4;
+    }
+
+    .media-item.horizontal {
+        grid-column: span 8;
+    }
+
+    .media-item.large {
+        grid-column: span 12;
+    }
 }
 
 @media (max-width: 768px) {
     .media-grid {
-        grid-template-columns: repeat(2, 1fr); /* Obligamos a 2 columnas */
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         padding: 0 10px;
     }
-    .media-item.horizontal, .media-item.large { grid-column: span 2; }
-    .media-item.vertical { grid-column: span 1; }
-    
-    .zoom-overlay span { font-size: 11px; padding: 5px 10px; }
-}
+
+    .media-item.horizontal,
+    .media-item.large {
+        grid-column: span 2;
+    }
+
+    .media-item.vertical {
+        grid-column: span 1;
+    }
+
+    .zoom-overlay span {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+}

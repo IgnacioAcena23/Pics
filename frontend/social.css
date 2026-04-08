@@ -1,5 +1,4 @@
 :root {
-    /* Global Colors & Design Tokens */
     --bg-color: #0b0e14;
     --nav-bg: rgba(11, 14, 20, 0.85);
     --text-primary: #ffffff;
@@ -8,14 +7,16 @@
     --accent-gradient: linear-gradient(135deg, #ff0022, #a60016);
 }
 
-/* Global Scrollbar Reset - Elimination */
 * {
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE/Edge */
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE/Edge */
 }
 
 *::-webkit-scrollbar {
-    display: none !important; /* Chrome/Safari/Opera */
+    display: none !important;
+    /* Chrome/Safari/Opera */
     width: 0 !important;
     height: 0 !important;
 }
@@ -26,7 +27,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Global Navigation & Header */
 header {
     position: fixed;
     top: 24px;
@@ -103,7 +103,6 @@ nav {
     box-shadow: 0 4px 15px rgba(255, 0, 34, 0.4);
 }
 
-/* Hamburger Menu Button */
 .hamburger-btn {
     display: none;
     flex-direction: column;
@@ -114,7 +113,6 @@ nav {
     border: none;
     cursor: pointer;
     z-index: 1001;
-    /* Keep above mobile menu */
 }
 
 .hamburger-btn span {
@@ -140,7 +138,6 @@ nav {
     transform: rotate(-45deg);
 }
 
-/* Global Footer & Social Links */
 .site-footer {
     width: 100%;
     background-color: #030408;
@@ -276,7 +273,6 @@ nav {
     margin: 0;
 }
 
-/* Common Media Queries */
 @media (max-width: 768px) {
 
     nav {
@@ -298,7 +294,6 @@ nav {
         position: fixed;
         top: 0;
         right: -100%;
-        /* Hidden by default */
         height: 100vh;
         width: 100vw;
         background: rgba(11, 14, 20, 0.98);
@@ -347,12 +342,11 @@ nav {
         position: relative;
     }
 
-    /* Uso de 'display: contents' para aplanar la estructura de cara al flex layout padre */
-    .footer-logo, .footer-right-column {
+    .footer-logo,
+    .footer-right-column {
         display: contents;
     }
 
-    /* Ordenación exacta a petición */
     .footer-logo img {
         order: 1;
         height: 45px;
@@ -386,4 +380,4 @@ nav {
         justify-content: center;
         width: 100%;
     }
-}
+}

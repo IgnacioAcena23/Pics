@@ -2,22 +2,19 @@ import { createClient } from 'https://esm.sh/@sanity/client@6.10.0'
 import imageUrlBuilder from 'https://esm.sh/@sanity/image-url@1.0.2'
 
 export const client = createClient({
-    projectId: 'hzboyqs4', // Tu ID de proyecto extraído de sanity.config.ts
+    projectId: 'hzboyqs4',
     dataset: 'production',
-    useCdn: false, // Desactivamos el CDN (false) para recibir cambios inmediatos al dar a "Publish"
-    apiVersion: '2024-03-31', // Versión estable de la API
+    useCdn: false,
+    apiVersion: '2024-03-31',
 })
 
 const builder = imageUrlBuilder(client)
 
-// Función auxiliar para generar las URLs de las imágenes de Sanity
 export function urlFor(source) {
     return builder.image(source)
 }
 
-// Función para obtener todos los eventos / proyectos
 export async function getEvents() {
-    // Definimos la consulta preguntando específicamente por el valor del slug
     const query = `*[_type == "eventType"]{ 
         name, 
         subtitle, 
@@ -28,7 +25,6 @@ export async function getEvents() {
     return events
 }
 
-// Función para obtener el carrusel del home
 export async function getHomeCarousel() {
     const query = `*[_type == "homeCarousel"][0]{
         images[]{
@@ -40,7 +36,6 @@ export async function getHomeCarousel() {
     return result?.images || []
 }
 
-// Función para obtener los logos de la franja infinita de Marcas
 export async function getBrandsMarquee() {
     const query = `*[_type == "brandsMarquee"][0]{
         logos[]{

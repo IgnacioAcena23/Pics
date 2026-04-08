@@ -1,7 +1,3 @@
-/* =========================================================================
-   HOLA.CSS - Unified Home Stylesheet
-   ========================================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +13,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Sections Layout */
 section {
     min-height: 100vh;
     padding: 140px 40px 60px;
@@ -28,7 +23,6 @@ section {
     justify-content: center;
 }
 
-/* Cinematic Entrance Animations */
 @keyframes heroTextReveal {
     0% {
         opacity: 0;
@@ -93,7 +87,6 @@ section {
     }
 }
 
-/* 1. Bloque para navegadores modernos (Chrome, Edge, Firefox) */
 @keyframes marqueeScroll {
     0% {
         transform: translate3d(-50%, 0, 0);
@@ -104,7 +97,6 @@ section {
     }
 }
 
-/* 2. Bloque exclusivo para motores WebKit antiguos (Versiones viejas de Safari/iOS) */
 @-webkit-keyframes marqueeScroll {
     0% {
         -webkit-transform: translate3d(-50%, 0, 0);
@@ -127,7 +119,6 @@ section {
     }
 }
 
-/* Centered Hero Section */
 .hero,
 .centered-hero {
     position: relative;
@@ -158,7 +149,6 @@ section {
 
 .hero-content h1 {
     font-size: clamp(2.2rem, 8vw, 80px);
-    /* Título más pequeño en móviles */
     line-height: 1.1;
     font-weight: 800;
     margin-bottom: 24px;
@@ -169,15 +159,12 @@ section {
 
 .hero-content p {
     font-size: clamp(14px, 4vw, 22px);
-    /* Subtítulo responsive */
     color: var(--text-secondary);
     width: 100%;
     margin: 0 auto;
     font-weight: 300;
     white-space: nowrap;
-    /* Evita que el texto salte a 2 líneas y cause vibración */
     overflow: hidden;
-    /* Oculta si se desborda un poco en la animación */
     animation: pBlurFade 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
@@ -188,7 +175,6 @@ section {
     -webkit-text-fill-color: transparent;
 }
 
-/* Orbiting Background Layout */
 .hero-image-sequence-bg {
     position: absolute;
     top: 50%;
@@ -210,7 +196,6 @@ section {
     animation: counterRotate 35s linear infinite;
     pointer-events: none;
     transform: rotate(0deg);
-    /* Reset explícito */
 }
 
 .seq-img {
@@ -223,7 +208,6 @@ section {
     pointer-events: auto;
 }
 
-/* Ring positions */
 .seq-img-wrapper:nth-child(1) {
     top: 0px;
     left: 360px;
@@ -264,13 +248,11 @@ section {
     left: 105.5px;
 }
 
-/* Titles */
 .section-bloque h2 {
     font-size: 48px;
     margin-bottom: 20px;
 }
 
-/* About Split Layout */
 .about-split-section {
     min-height: 100vh;
     padding: 140px 40px 60px;
@@ -341,7 +323,6 @@ section {
     font-weight: 300;
 }
 
-/* Works Section Carousel */
 .works-section {
     padding: 140px 0 60px;
     min-height: 100vh;
@@ -519,14 +500,12 @@ section {
     transform: translateY(-8px);
 }
 
-/* Brands Marquee */
 .brands-marquee {
     min-height: auto;
     padding: 60px 0;
     width: 100%;
     background: #0b0e14;
     border-top: 1px solid rgba(255, 0, 34, 0.2);
-    /* Línea más oscura */
 }
 
 .marquee-container {
@@ -534,7 +513,6 @@ section {
     overflow: hidden;
     position: relative;
     padding: 20px 0;
-    /* FORZAMOS GPU EN SAFARI AL CONTENEDOR PADRE */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
@@ -563,13 +541,11 @@ section {
 .marquee-track {
     display: flex;
     width: max-content;
-    /* Quitamos la animación de aquí para que no arranque en vacío */
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-/* Crea una clase nueva que sí tenga la animación */
 .is-animating {
     -webkit-animation: marqueeScroll 25s linear infinite;
     animation: marqueeScroll 25s linear infinite;
@@ -588,11 +564,7 @@ section {
     max-width: 160px;
     object-fit: contain;
     transition: all 0.4s ease;
-
-    /* 1. CRUCIAL: Evita que Safari colapse el ancho a 0 */
     flex-shrink: 0;
-
-    /* 2. CRUCIAL: Aceleración por hardware para que no desaparezcan */
     -webkit-transform: translateZ(0) scale(1);
     transform: translateZ(0) scale(1);
     will-change: transform;
@@ -603,7 +575,6 @@ section {
     transform: translateZ(0) scale(1.1);
 }
 
-/* Bento Gallery */
 .bento-container {
     height: 100vh;
     width: 100%;
@@ -678,7 +649,6 @@ section {
     grid-row: span 1;
 }
 
-/* Responsiveness */
 @media (max-width: 992px) {
     .about-split-container {
         flex-direction: column;
@@ -694,17 +664,14 @@ section {
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 32px;
-        /* Título significativamente más pequeño para evitar que se rompa u ocupe toda la pantalla */
         margin-bottom: 15px;
     }
 
     .hero-content p {
         font-size: 14px;
         white-space: nowrap;
-        /* Garantiza que el scramble-text no baje de línea */
     }
 
-    /* Corrección de espacios y blancos en mobile para Home y Sections */
     #home.hero,
     .centered-hero {
         min-height: 100vh;
@@ -722,7 +689,6 @@ section {
         padding-bottom: 20px;
     }
 
-    /* Carrusel Giratorio: Más grande para que roten por los bordes sin chocar, manteniendo el tamaño a 100px */
     .hero-image-sequence-bg {
         width: 600px;
         height: 600px;
@@ -733,7 +699,6 @@ section {
         height: 100px;
     }
 
-    /* Recalculated 600px ring positions for 8 items with 100px size */
     .seq-img-wrapper:nth-child(1) {
         top: 0px;
         left: 250px;
@@ -819,7 +784,6 @@ section {
         display: none;
     }
 
-    /* Works Carousel Mobile Optimization */
     .works-carousel {
         gap: 20px;
         padding: 20px 20px 80px 20px;
@@ -838,7 +802,6 @@ section {
         font-size: 24px;
     }
 
-    /* Reducir desvanecido de marcas en móvil para ver más a la vez */
     .marquee-container::before,
     .marquee-container::after {
         width: 120px;
