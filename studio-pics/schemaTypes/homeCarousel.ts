@@ -10,7 +10,7 @@ export const homeCarousel = defineType({
             title: "Título del Carrusel",
             type: "string",
             initialValue: "Carrusel Principal",
-            readOnly: true, // Para mantenerlo como una configuración única
+            readOnly: true,
         }),
         defineField({
             name: "images",

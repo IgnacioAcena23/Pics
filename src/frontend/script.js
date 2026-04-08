@@ -1,7 +1,5 @@
-// 1. Inicialización de GSAP y Plugins
 gsap.registerPlugin(ScrollTrigger);
 
-// 2. Inicialización de Lenis (Smooth Scroll Premium)
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -18,20 +16,17 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Integrar Lenis con ScrollTrigger
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
 
-// Forzar inicio arriba
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
 
-// --- Navegación Activa Inteligente ---
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 const logoLink = document.querySelector('a.logo[href^="#"]');
 
@@ -41,26 +36,22 @@ function updateActiveState(targetId) {
     });
 }
 
-// Click handling para NavLinks y Logo
 [...navLinks, logoLink].forEach(anchor => {
     if (!anchor) return;
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        
-        // Usar Lenis para el scroll suave
+
         lenis.scrollTo(targetId, {
             offset: 0,
             duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
         });
 
-        // Actualizar active inmediatamente
         updateActiveState(targetId);
     });
 });
 
-// Scroll Spy robusto con ScrollTrigger
 navLinks.forEach(link => {
     const targetId = link.getAttribute('href');
     const section = document.querySelector(targetId);
@@ -75,11 +66,6 @@ navLinks.forEach(link => {
     }
 });
 
-// ==========================================
-// 3. ANIMACIONES CON GSAP Y SCROLLTRIGGER
-// ==========================================
-
-// --- A) Animación del Hero ---
 gsap.to(".hero-content h1", {
     scale: 0.5,
     opacity: 0,
@@ -92,7 +78,6 @@ gsap.to(".hero-content h1", {
     }
 });
 
-// --- B) Animaciones de Títulos de Sección ---
 const sectionTitles = [
     { selector: "#about .about-title", trigger: "#about" },
     { selector: "#works .works-title", trigger: "#works" }
@@ -107,15 +92,14 @@ sectionTitles.forEach(st => {
             y: 0,
             scrollTrigger: {
                 trigger: st.trigger,
-                start: "top 85%", 
-                end: "top 40%",   
-                scrub: 1         
+                start: "top 85%",
+                end: "top 40%",
+                scrub: 1
             }
         }
     );
 });
 
-// --- C) Animación Scramble Text ---
 const scrambleEl = document.getElementById("scramble-text");
 if (scrambleEl) {
     const finalStr = scrambleEl.innerText;
@@ -140,8 +124,7 @@ if (scrambleEl) {
     });
 }
 
-// --- D) Hero Image Sequence Parallax ---
-window.initHeroAnimations = function() {
+window.initHeroAnimations = function () {
     const seqImgs = document.querySelectorAll('.seq-img');
     gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d", rotationX: 0, rotationY: 0, rotationZ: 0 });
 
@@ -162,8 +145,8 @@ window.initHeroAnimations = function() {
 
     window._heroMouseMoveRef = (e) => {
         const { innerWidth, innerHeight } = window;
-        const xPos = (e.clientX / innerWidth - 0.5) * 2; 
-        const yPos = (e.clientY / innerHeight - 0.5) * 2; 
+        const xPos = (e.clientX / innerWidth - 0.5) * 2;
+        const yPos = (e.clientY / innerHeight - 0.5) * 2;
 
         xTos.forEach((xTo) => xTo(xPos * 30));
         yTos.forEach((yTo) => yTo(-yPos * 30));
@@ -173,7 +156,6 @@ window.initHeroAnimations = function() {
 };
 window.initHeroAnimations();
 
-// --- E) Galería Horizontal (Works) ---
 const slider = document.querySelector('.works-carousel');
 let isDown = false;
 let startX;
@@ -203,7 +185,7 @@ if (slider) {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2; 
+        const walk = (x - startX) * 2;
 
         if (Math.abs(walk) > 5) {
             isDragging = true;
@@ -212,7 +194,6 @@ if (slider) {
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    // Botones de navegación (Flechas)
     const prevBtn = document.querySelector('.scroll-prev-btn');
     const nextBtn = document.querySelector('.scroll-next-btn');
 
