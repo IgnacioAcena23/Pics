@@ -51,10 +51,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             wrappers[i].remove();
         }
 
-        // Reiniciar animaciones del hero si existen
-        sequenceContainer.style.animation = 'none';
+        // Reiniciar animaciones del hero si existen (contenedor y wrappers para que vayan síncronos)
+        const allAnimated = [sequenceContainer, ...wrappers];
+        allAnimated.forEach(el => el.style.animation = 'none');
         void sequenceContainer.offsetWidth;
-        sequenceContainer.style.animation = '';
+        allAnimated.forEach(el => el.style.animation = '');
+        
         if (window.initHeroAnimations) {
             window.initHeroAnimations();
         }

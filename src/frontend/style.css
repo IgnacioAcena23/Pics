@@ -213,6 +213,7 @@ section {
 
 .seq-img.seq-img-loaded {
     opacity: 1;
+    transform: rotate(0deg);
 }
 
 .seq-img-wrapper:nth-child(1) {
