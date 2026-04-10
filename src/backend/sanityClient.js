@@ -46,3 +46,11 @@ export async function getBrandsMarquee() {
     const result = await client.fetch(query)
     return result?.logos || []
 }
+
+export async function getAboutMe() {
+    const query = `*[_type == "aboutMe"][0]{
+        profileImage
+    }`
+    const result = await client.fetch(query)
+    return result || null
+}
