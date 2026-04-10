@@ -23,6 +23,7 @@ export const eventType = defineType({
                 source: "name",
                 maxLength: 96,
             },
+            validation: (Rule) => Rule.required().error('Es obligatorio generar un slug para poder publicar este proyecto.'),
         }),
         defineField({
             name: "image",
