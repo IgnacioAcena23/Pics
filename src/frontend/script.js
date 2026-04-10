@@ -148,8 +148,8 @@ window.initHeroAnimations = function () {
         const xPos = (e.clientX / innerWidth - 0.5) * 2;
         const yPos = (e.clientY / innerHeight - 0.5) * 2;
 
-        xTos.forEach((xTo) => xTo(xPos * 30));
-        yTos.forEach((yTo) => yTo(-yPos * 30));
+        xTos.forEach((xTo) => xTo(xPos * 8));
+        yTos.forEach((yTo) => yTo(-yPos * 8));
     };
 
     window.addEventListener("mousemove", window._heroMouseMoveRef);
