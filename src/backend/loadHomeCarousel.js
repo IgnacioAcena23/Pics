@@ -3,19 +3,35 @@ import { getHomeCarousel, urlFor } from './sanityClient.js';
 // 1. Lanzamos la petición a Sanity INMEDIATAMENTE (sin esperar DOMContentLoaded)
 const sanityPromise = getHomeCarousel();
 
-// 2. Cuando el DOM esté listo, inyectamos las imágenes
+// 2. Cuando el DOM esté listo, inyectamos las imágenes y el texto
 document.addEventListener('DOMContentLoaded', async () => {
     const sequenceContainer = document.querySelector('.hero-image-sequence-bg');
+    const heroTitleContainer = document.querySelector('.hero-content h1');
 
     if (!sequenceContainer) return;
 
     try {
-        const images = await sanityPromise;
+        const homeData = await sanityPromise;
 
-        if (images.length === 0) {
-            console.log("No hay fotos para el carrusel de home en Sanity.");
+        if (!homeData) {
+            console.log("No hay datos para el carrusel de home en Sanity.");
             return;
         }
+
+        // --- 1. Inyectar / Actualizar Textos ---
+        if (heroTitleContainer) {
+            const h1Title = homeData.welcomeTitle || "Welcome to";
+            const h1Highlight = homeData.welcomeHighlight || "My Vision";
+            heroTitleContainer.innerHTML = `${h1Title} <br><span class="highlight">${h1Highlight}</span>`;
+        }
+
+        if (homeData.scrambleText && window.initScrambleText) {
+            window.initScrambleText(homeData.scrambleText);
+        }
+
+        // --- 2. Inyectar Carrusel de Imágenes ---
+        const images = homeData.images || [];
+        if (images.length === 0) return;
 
         // Obtener los wrappers existentes (los placeholders negros del HTML)
         const wrappers = sequenceContainer.querySelectorAll('.seq-img-wrapper');
@@ -51,11 +67,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             wrappers[i].remove();
         }
 
-        // Reiniciar animaciones del hero si existen (contenedor y wrappers para que vayan síncronos)
+        // Aseguramos que las animaciones por CSS queden totalmente desactivadas
+        // ya que la nueva lógica interactiva lo maneja completamente vía JS.
         const allAnimated = [sequenceContainer, ...wrappers];
         allAnimated.forEach(el => el.style.animation = 'none');
-        void sequenceContainer.offsetWidth;
-        allAnimated.forEach(el => el.style.animation = '');
         
         if (window.initHeroAnimations) {
             window.initHeroAnimations();

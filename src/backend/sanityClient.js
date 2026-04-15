@@ -27,13 +27,17 @@ export async function getEvents() {
 
 export async function getHomeCarousel() {
     const query = `*[_type == "homeCarousel"][0]{
+        welcomeTitle,
+        welcomeHighlight,
+        scrambleText,
         images[]{
             "url": asset->url,
             asset
         }
     }`
     const result = await client.fetch(query)
-    return result?.images || []
+    // Devolvemos todo el objeto para poder usar los textos y las imágenes
+    return result || null
 }
 
 export async function getBrandsMarquee() {
@@ -49,7 +53,8 @@ export async function getBrandsMarquee() {
 
 export async function getAboutMe() {
     const query = `*[_type == "aboutMe"][0]{
-        profileImage
+        profileImage,
+        aboutDescription
     }`
     const result = await client.fetch(query)
     return result || null

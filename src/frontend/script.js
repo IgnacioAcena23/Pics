@@ -100,29 +100,34 @@ sectionTitles.forEach(st => {
     );
 });
 
-const scrambleEl = document.getElementById("scramble-text");
-if (scrambleEl) {
-    const finalStr = scrambleEl.innerText;
-    const chars = "!<>-_\\/[]{}—=+*^?#________";
-    gsap.to({ p: 0 }, {
-        p: 1,
-        duration: 5,
-        delay: 0,
-        ease: "none",
-        onUpdate: function () {
-            const progress = this.targets()[0].p;
-            let result = "";
-            for (let i = 0; i < finalStr.length; i++) {
-                if (i < progress * finalStr.length) {
-                    result += finalStr[i];
-                } else {
-                    result += finalStr[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+window.initScrambleText = function (newText) {
+    const scrambleEl = document.getElementById("scramble-text");
+    if (scrambleEl) {
+        if (newText) scrambleEl.innerText = newText;
+        const finalStr = scrambleEl.innerText;
+        const chars = "!<>-_\\/[]{}—=+*^?#________";
+        gsap.to({ p: 0 }, {
+            p: 1,
+            duration: 5,
+            delay: 0,
+            ease: "none",
+            onUpdate: function () {
+                const progress = this.targets()[0].p;
+                let result = "";
+                for (let i = 0; i < finalStr.length; i++) {
+                    if (i < progress * finalStr.length) {
+                        result += finalStr[i];
+                    } else {
+                        result += finalStr[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+                    }
                 }
+                scrambleEl.innerText = result;
             }
-            scrambleEl.innerText = result;
-        }
-    });
-}
+        });
+    }
+};
+
+window.initScrambleText();
 
 window.initHeroAnimations = function () {
     const seqImgs = document.querySelectorAll('.seq-img');
