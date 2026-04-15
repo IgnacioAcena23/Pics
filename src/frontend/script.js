@@ -131,6 +131,13 @@ window.initScrambleText();
 
 window.initHeroAnimations = function () {
     const seqImgs = document.querySelectorAll('.seq-img');
+    const bgContainer = document.querySelector('.hero-image-sequence-bg');
+    const wrappers = document.querySelectorAll('.seq-img-wrapper');
+
+    // Desactivamos animaciones CSS para evitar que choquen con nuestro JS
+    if (bgContainer) bgContainer.style.animation = 'none';
+    wrappers.forEach(w => w.style.animation = 'none');
+
     gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d", rotationX: 0, rotationY: 0, rotationZ: 0 });
 
     const xTos = [];
@@ -138,6 +145,19 @@ window.initHeroAnimations = function () {
 
     if (window._heroMouseMoveRef) {
         window.removeEventListener("mousemove", window._heroMouseMoveRef);
+    }
+    
+    if (window._heroTicker) gsap.ticker.remove(window._heroTicker);
+    if (window._heroDragRefs) {
+        const heroSection = document.querySelector('#home');
+        if (heroSection) {
+            heroSection.removeEventListener("mousedown", window._heroDragRefs.down);
+            heroSection.removeEventListener("touchstart", window._heroDragRefs.down);
+        }
+        window.removeEventListener("mousemove", window._heroDragRefs.move);
+        window.removeEventListener("mouseup", window._heroDragRefs.up);
+        window.removeEventListener("touchmove", window._heroDragRefs.move);
+        window.removeEventListener("touchend", window._heroDragRefs.up);
     }
 
     seqImgs.forEach((img) => {
@@ -158,6 +178,75 @@ window.initHeroAnimations = function () {
     };
 
     window.addEventListener("mousemove", window._heroMouseMoveRef);
+
+    // NUEVO: Lógica de arrastre y rotación
+    let currentRotation = window._heroRotAngle || 0;
+    let autoRotateSpeed = 0.17; // Equivalent to 35s per rotation
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragVelocity = 0;
+
+    window._heroTicker = () => {
+        if (!isDragging) {
+            if (Math.abs(dragVelocity) > 0.05) {
+                dragVelocity *= 0.94; // friction
+                currentRotation += dragVelocity;
+            } else {
+                currentRotation += autoRotateSpeed;
+            }
+        }
+        
+        window._heroRotAngle = currentRotation;
+
+        if (bgContainer) {
+            bgContainer.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
+        }
+        wrappers.forEach(w => {
+            w.style.transform = `rotate(${-currentRotation}deg)`;
+        });
+    };
+    
+    gsap.ticker.add(window._heroTicker);
+
+    const onDown = (e) => {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        isDragging = true;
+        dragStartX = clientX;
+        dragVelocity = 0;
+        
+        if (bgContainer) document.body.style.cursor = 'grabbing';
+        seqImgs.forEach(img => img.style.pointerEvents = 'none');
+    };
+
+    const onMove = (e) => {
+        if (!isDragging) return;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const delta = clientX - dragStartX;
+        dragStartX = clientX;
+        dragVelocity = delta * 0.15; 
+        currentRotation += dragVelocity;
+    };
+
+    const onUp = () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = '';
+            seqImgs.forEach(img => img.style.pointerEvents = 'auto');
+        }
+    };
+
+    window._heroDragRefs = { down: onDown, move: onMove, up: onUp };
+    
+    const heroSection = document.querySelector('#home');
+    if (heroSection) {
+        heroSection.addEventListener("mousedown", onDown);
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+        
+        heroSection.addEventListener("touchstart", onDown, {passive: true});
+        window.addEventListener("touchmove", onMove, {passive: true});
+        window.addEventListener("touchend", onUp);
+    }
 };
 window.initHeroAnimations();
 
