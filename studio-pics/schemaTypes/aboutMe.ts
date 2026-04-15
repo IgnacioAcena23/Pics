@@ -14,6 +14,12 @@ export const aboutMeType = defineType({
         hotspot: true, // Permite encuadrar la imagen
       },
     }),
+    defineField({
+      name: 'aboutDescription',
+      title: 'Descripción de About Me',
+      type: 'text',
+      description: 'El texto que aparece en la sección lateral junto a la foto.',
+    }),
   ],
   preview: {
     select: {

@@ -100,32 +100,44 @@ sectionTitles.forEach(st => {
     );
 });
 
-const scrambleEl = document.getElementById("scramble-text");
-if (scrambleEl) {
-    const finalStr = scrambleEl.innerText;
-    const chars = "!<>-_\\/[]{}—=+*^?#________";
-    gsap.to({ p: 0 }, {
-        p: 1,
-        duration: 5,
-        delay: 0,
-        ease: "none",
-        onUpdate: function () {
-            const progress = this.targets()[0].p;
-            let result = "";
-            for (let i = 0; i < finalStr.length; i++) {
-                if (i < progress * finalStr.length) {
-                    result += finalStr[i];
-                } else {
-                    result += finalStr[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+window.initScrambleText = function (newText) {
+    const scrambleEl = document.getElementById("scramble-text");
+    if (scrambleEl) {
+        if (newText) scrambleEl.innerText = newText;
+        const finalStr = scrambleEl.innerText;
+        const chars = "!<>-_\\/[]{}—=+*^?#________";
+        gsap.to({ p: 0 }, {
+            p: 1,
+            duration: 5,
+            delay: 0,
+            ease: "none",
+            onUpdate: function () {
+                const progress = this.targets()[0].p;
+                let result = "";
+                for (let i = 0; i < finalStr.length; i++) {
+                    if (i < progress * finalStr.length) {
+                        result += finalStr[i];
+                    } else {
+                        result += finalStr[i] === " " ? " " : chars[Math.floor(Math.random() * chars.length)];
+                    }
                 }
+                scrambleEl.innerText = result;
             }
-            scrambleEl.innerText = result;
-        }
-    });
-}
+        });
+    }
+};
+
+window.initScrambleText();
 
 window.initHeroAnimations = function () {
     const seqImgs = document.querySelectorAll('.seq-img');
+    const bgContainer = document.querySelector('.hero-image-sequence-bg');
+    const wrappers = document.querySelectorAll('.seq-img-wrapper');
+
+    // Desactivamos animaciones CSS para evitar que choquen con nuestro JS
+    if (bgContainer) bgContainer.style.animation = 'none';
+    wrappers.forEach(w => w.style.animation = 'none');
+
     gsap.set(seqImgs, { transformPerspective: 900, transformStyle: "preserve-3d", rotationX: 0, rotationY: 0, rotationZ: 0 });
 
     const xTos = [];
@@ -135,9 +147,23 @@ window.initHeroAnimations = function () {
         window.removeEventListener("mousemove", window._heroMouseMoveRef);
     }
 
+    if (window._heroTicker) gsap.ticker.remove(window._heroTicker);
+    if (window._heroDragRefs) {
+        const heroSection = document.querySelector('#home');
+        if (heroSection) {
+            heroSection.removeEventListener("mousedown", window._heroDragRefs.down);
+            heroSection.removeEventListener("touchstart", window._heroDragRefs.down);
+        }
+        window.removeEventListener("mousemove", window._heroDragRefs.move);
+        window.removeEventListener("mouseup", window._heroDragRefs.up);
+        window.removeEventListener("touchmove", window._heroDragRefs.move);
+        window.removeEventListener("touchend", window._heroDragRefs.up);
+    }
+
     seqImgs.forEach((img) => {
-        xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
-        yTos.push(gsap.quickTo(img, "rotationX", { ease: "power3", duration: 0.6 }));
+        // Reducimos la duración del easing de 0.6 a 0.2 para que se sienta más rápido e inmediato
+        xTos.push(gsap.quickTo(img, "rotationY", { ease: "power2.out", duration: 0.2 }));
+        yTos.push(gsap.quickTo(img, "rotationX", { ease: "power2.out", duration: 0.2 }));
 
         img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" }));
         img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
@@ -148,11 +174,81 @@ window.initHeroAnimations = function () {
         const xPos = (e.clientX / innerWidth - 0.5) * 2;
         const yPos = (e.clientY / innerHeight - 0.5) * 2;
 
-        xTos.forEach((xTo) => xTo(xPos * 8));
-        yTos.forEach((yTo) => yTo(-yPos * 8));
+        // Aumentamos el multiplicador: antes era 8 grados, ahora gira hasta 25 grados 
+        xTos.forEach((xTo) => xTo(xPos * 25));
+        yTos.forEach((yTo) => yTo(-yPos * 25));
     };
 
     window.addEventListener("mousemove", window._heroMouseMoveRef);
+
+    // NUEVO: Lógica de arrastre y rotación
+    let currentRotation = window._heroRotAngle || 0;
+    let autoRotateSpeed = 0.07; // Equivalent to 35s per rotation
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragVelocity = 0;
+
+    window._heroTicker = () => {
+        if (!isDragging) {
+            if (Math.abs(dragVelocity) > 0.05) {
+                dragVelocity *= 0.94; // friction
+                currentRotation += dragVelocity;
+            } else {
+                currentRotation += autoRotateSpeed;
+            }
+        }
+
+        window._heroRotAngle = currentRotation;
+
+        if (bgContainer) {
+            bgContainer.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
+        }
+        wrappers.forEach(w => {
+            w.style.transform = `rotate(${-currentRotation}deg)`;
+        });
+    };
+
+    gsap.ticker.add(window._heroTicker);
+
+    const onDown = (e) => {
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        isDragging = true;
+        dragStartX = clientX;
+        dragVelocity = 0;
+
+        if (bgContainer) document.body.style.cursor = 'grabbing';
+        seqImgs.forEach(img => img.style.pointerEvents = 'none');
+    };
+
+    const onMove = (e) => {
+        if (!isDragging) return;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const delta = clientX - dragStartX;
+        dragStartX = clientX;
+        dragVelocity = delta * 0.15;
+        currentRotation += dragVelocity;
+    };
+
+    const onUp = () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.cursor = '';
+            seqImgs.forEach(img => img.style.pointerEvents = 'auto');
+        }
+    };
+
+    window._heroDragRefs = { down: onDown, move: onMove, up: onUp };
+
+    const heroSection = document.querySelector('#home');
+    if (heroSection) {
+        heroSection.addEventListener("mousedown", onDown);
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+
+        heroSection.addEventListener("touchstart", onDown, { passive: true });
+        window.addEventListener("touchmove", onMove, { passive: true });
+        window.addEventListener("touchend", onUp);
+    }
 };
 window.initHeroAnimations();
 

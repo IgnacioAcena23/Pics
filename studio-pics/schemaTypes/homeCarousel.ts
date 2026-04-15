@@ -13,6 +13,25 @@ export const homeCarousel = defineType({
             readOnly: true,
         }),
         defineField({
+            name: "welcomeTitle",
+            title: "Título de Bienvenida (Welcome to)",
+            type: "string",
+            initialValue: "Welcome to",
+        }),
+        defineField({
+            name: "welcomeHighlight",
+            title: "Texto Destacado (My Vision)",
+            type: "string",
+            initialValue: "My Vision",
+        }),
+        defineField({
+            name: "scrambleText",
+            title: "Texto Desordenado (Scramble)",
+            type: "string",
+            initialValue: "WE WERE CREATED TO CREATE.",
+            description: "Este es el texto que aparece con la animación de descifrado al principio.",
+        }),
+        defineField({
             name: "images",
             title: "Fotos del Carrusel (Total: 8)",
             type: "array",
