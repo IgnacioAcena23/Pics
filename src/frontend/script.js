@@ -161,8 +161,9 @@ window.initHeroAnimations = function () {
     }
 
     seqImgs.forEach((img) => {
-        xTos.push(gsap.quickTo(img, "rotationY", { ease: "power3", duration: 0.6 }));
-        yTos.push(gsap.quickTo(img, "rotationX", { ease: "power3", duration: 0.6 }));
+        // Reducimos la duración del easing de 0.6 a 0.2 para que se sienta más rápido e inmediato
+        xTos.push(gsap.quickTo(img, "rotationY", { ease: "power2.out", duration: 0.2 }));
+        yTos.push(gsap.quickTo(img, "rotationX", { ease: "power2.out", duration: 0.2 }));
 
         img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" }));
         img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" }));
@@ -173,8 +174,9 @@ window.initHeroAnimations = function () {
         const xPos = (e.clientX / innerWidth - 0.5) * 2;
         const yPos = (e.clientY / innerHeight - 0.5) * 2;
 
-        xTos.forEach((xTo) => xTo(xPos * 8));
-        yTos.forEach((yTo) => yTo(-yPos * 8));
+        // Aumentamos el multiplicador: antes era 8 grados, ahora gira hasta 25 grados 
+        xTos.forEach((xTo) => xTo(xPos * 25));
+        yTos.forEach((yTo) => yTo(-yPos * 25));
     };
 
     window.addEventListener("mousemove", window._heroMouseMoveRef);
