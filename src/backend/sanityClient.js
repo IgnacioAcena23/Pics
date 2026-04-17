@@ -36,7 +36,6 @@ export async function getHomeCarousel() {
         }
     }`
     const result = await client.fetch(query)
-    // Devolvemos todo el objeto para poder usar los textos y las imágenes
     return result || null
 }
 
