@@ -54,7 +54,8 @@ export async function getBrandsMarquee() {
 export async function getAboutMe() {
     const query = `*[_type == "aboutMe"][0]{
         profileImage,
-        aboutDescription
+        aboutDescription,
+        roleTitle
     }`
     const result = await client.fetch(query)
     return result || null

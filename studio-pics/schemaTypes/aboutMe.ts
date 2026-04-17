@@ -6,6 +6,12 @@ export const aboutMeType = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'roleTitle',
+      title: 'Título del Cargo',
+      type: 'string',
+      description: 'El título que aparece bajo el nombre (ej. Director Cinematográfico).',
+    }),
+    defineField({
       name: 'profileImage',
       title: 'Foto de Perfil',
       type: 'image',
