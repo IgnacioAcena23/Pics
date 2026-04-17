@@ -134,7 +134,6 @@ window.initHeroAnimations = function () {
     const bgContainer = document.querySelector('.hero-image-sequence-bg');
     const wrappers = document.querySelectorAll('.seq-img-wrapper');
 
-    // Desactivamos animaciones CSS para evitar que choquen con nuestro JS
     if (bgContainer) bgContainer.style.animation = 'none';
     wrappers.forEach(w => w.style.animation = 'none');
 
@@ -161,7 +160,6 @@ window.initHeroAnimations = function () {
     }
 
     seqImgs.forEach((img) => {
-        // Reducimos la duración del easing de 0.6 a 0.2 para que se sienta más rápido e inmediato
         xTos.push(gsap.quickTo(img, "rotationY", { ease: "power2.out", duration: 0.2 }));
         yTos.push(gsap.quickTo(img, "rotationX", { ease: "power2.out", duration: 0.2 }));
 
@@ -173,17 +171,14 @@ window.initHeroAnimations = function () {
         const { innerWidth, innerHeight } = window;
         const xPos = (e.clientX / innerWidth - 0.5) * 2;
         const yPos = (e.clientY / innerHeight - 0.5) * 2;
-
-        // Aumentamos el multiplicador: antes era 8 grados, ahora gira hasta 25 grados 
         xTos.forEach((xTo) => xTo(xPos * 25));
         yTos.forEach((yTo) => yTo(-yPos * 25));
     };
 
     window.addEventListener("mousemove", window._heroMouseMoveRef);
 
-    // NUEVO: Lógica de arrastre y rotación
     let currentRotation = window._heroRotAngle || 0;
-    let autoRotateSpeed = 0.07; // Equivalent to 35s per rotation
+    let autoRotateSpeed = 0.07;
     let isDragging = false;
     let dragStartX = 0;
     let dragVelocity = 0;
@@ -191,7 +186,7 @@ window.initHeroAnimations = function () {
     window._heroTicker = () => {
         if (!isDragging) {
             if (Math.abs(dragVelocity) > 0.05) {
-                dragVelocity *= 0.94; // friction
+                dragVelocity *= 0.94;
                 currentRotation += dragVelocity;
             } else {
                 currentRotation += autoRotateSpeed;

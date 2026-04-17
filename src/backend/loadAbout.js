@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const aboutData = await getAboutMe();
 
         if (aboutData) {
-            // Actualizar la foto si existe
             if (aboutData.profileImage && aboutImageEl) {
                 const imageUrl = urlFor(aboutData.profileImage).width(1000).auto('format').url();
                 aboutImageEl.src = imageUrl;
@@ -17,12 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.log("No hay foto configurada en el About Me de Sanity.");
             }
 
-            // Actualizar la descripción si existe
             if (aboutData.aboutDescription && aboutDescEl) {
                 aboutDescEl.textContent = aboutData.aboutDescription;
             }
 
-            // Actualizar el título del cargo si existe
             if (aboutData.roleTitle && aboutRoleEl) {
                 aboutRoleEl.textContent = aboutData.roleTitle;
             }
