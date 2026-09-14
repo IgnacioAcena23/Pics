@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const wrappers = sequenceContainer.querySelectorAll('.seq-img-wrapper');
 
         images.forEach((imgData, index) => {
-            const imageUrl = imgData.asset ? urlFor(imgData.asset).width(1200).auto('format').url() : '';
+            const imageUrl = imgData.asset ? urlFor(imgData.asset).width(400).height(400).fit('crop').url() : '';
 
             if (!imageUrl) return;
 
@@ -45,12 +45,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             const img = document.createElement('img');
             img.alt = `Hero Image ${index + 1}`;
             img.className = 'seq-img';
+            img.loading = 'eager';
 
             img.onload = () => {
                 img.classList.add('seq-img-loaded');
             };
 
             img.src = imageUrl;
+
+            if (img.complete) {
+                img.classList.add('seq-img-loaded');
+            }
+
             wrapper.appendChild(img);
         });
 

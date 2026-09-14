@@ -4,14 +4,14 @@ import imageUrlBuilder from 'https://esm.sh/@sanity/image-url@1.0.2'
 export const client = createClient({
     projectId: 'hzboyqs4',
     dataset: 'production',
-    useCdn: false,
+    useCdn: true,
     apiVersion: '2024-03-31',
 })
 
 const builder = imageUrlBuilder(client)
 
 export function urlFor(source) {
-    return builder.image(source)
+    return builder.image(source).auto('format')
 }
 
 export async function getEvents() {
